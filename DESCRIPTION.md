@@ -5,9 +5,9 @@
 ----
 
 * [x] Add repo
-* [ ] Add Components Folder
+* [x] Add Components Folder
 * [ ] Add services
-* [ ] Add Routers Component
+* [x] Add Routers Component
 * [x] Add prop types
 * [x] Add eslint
 * [x] Add favicon
@@ -27,6 +27,7 @@
 * [ ] Add pagination
 * [ ] Add image loading
 * [ ] Remove application submodule
+* [ ] Add Page Not Found 404!
 
 ## API's
 ----
