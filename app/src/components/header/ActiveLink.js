@@ -13,7 +13,10 @@ const ActiveLink = ({ label, to, activeOnlyWhenExact }) => {
   });
 
   return (
-    <Link className={`nav-link ${match ? 'active__link' : ''}`} to={to}>
+    <Link 
+      className={`nav-link ${match ? 'active__link' : ''}`} 
+      to={to}
+    >
       {label}
     </Link>
   );
@@ -22,7 +25,7 @@ const ActiveLink = ({ label, to, activeOnlyWhenExact }) => {
 ActiveLink.propTypes = {
   to: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  activeOnlyWhenExact: PropTypes.bool.isRequired,
+  activeOnlyWhenExact: PropTypes.bool,
 };
 
 export default ActiveLink;

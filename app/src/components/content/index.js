@@ -36,8 +36,8 @@ const Content = ({ selecetdOption }) => {
   }, [selecetdOption]);
 
   const renderContent = () => (
-    <section class="main__content">
-      <div class="row">
+    <section className="main__content">
+      <div className="row">
         {error && <p>Connection failed!</p>}
         {loading ? (
           <Spinner />

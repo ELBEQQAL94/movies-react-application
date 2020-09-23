@@ -30,6 +30,8 @@
 * [ ] Remove application submodule
 * [ ] Add Page Not Found 404!
 * [ ] Remove animations
+* [ ] Make spinner display in center
+* [ ] Add contextAPI
 
 ## API's
 ----

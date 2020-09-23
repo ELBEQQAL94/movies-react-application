@@ -14,7 +14,7 @@ import { requests } from './services';
 import { Header, Footer } from './components';
 
 // Pages
-import { Home } from './pages';
+import { Home, PageNotFound, TvShows } from './pages';
 
 const Routers = () => {
 
@@ -34,13 +34,12 @@ const Routers = () => {
             <Home selecetdOption={selecetdOption} />
           </Route>
           <Route path='/tv-shows'>
-            <Header 
-              setSelecetdOption={setSelecetdOption} 
-              selecetdOption={selecetdOption}
-            />
-            <h1>
-                Tv Shows
-            </h1>
+            <TvShows />
+          </Route>
+
+          {/* Page Not Found!*/}
+          <Route path='*'>
+            <PageNotFound />
           </Route>
         </Switch>
 

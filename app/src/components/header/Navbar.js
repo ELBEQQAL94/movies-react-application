@@ -1,8 +1,5 @@
 import React from "react";
 
-// react router
-import { Link } from 'react-router-dom';
-
 // Components
 import Logo from './Logo';
 import NavbarToggler from './NavbarToggler';
