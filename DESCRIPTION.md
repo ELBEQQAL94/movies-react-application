@@ -5,6 +5,11 @@
 ----
 
 * [x] Add repo
+* [ ] Add Components Folder
+* [ ] Add services
+* [ ] Add Routers Component
+* [x] Add prop types
+* [x] Add eslint
 * [x] Add favicon
 * [ ] Add rows for fetch movies && tv shows
 * [ ] Fetch data from server
