@@ -11,7 +11,7 @@ import {
 import { requests } from './services';
 
 // Components
-import { Header } from './components';
+import { Header, Footer } from './components';
 
 // Pages
 import { Home } from './pages';
@@ -23,12 +23,14 @@ const Routers = () => {
   return (
     <Router>
       <div className="app">
+
+        {/* HEADER */}
+        <Header 
+          setSelecetdOption={setSelecetdOption} 
+          selecetdOption={selecetdOption} 
+        />
         <Switch>
           <Route exact path='/'>
-            <Header 
-              setSelecetdOption={setSelecetdOption} 
-              selecetdOption={selecetdOption} 
-            />
             <Home selecetdOption={selecetdOption} />
           </Route>
           <Route path='/tv-shows'>
@@ -41,6 +43,9 @@ const Routers = () => {
             </h1>
           </Route>
         </Switch>
+
+        {/* Footer*/}
+        <Footer />
       </div>
     </Router>
   );

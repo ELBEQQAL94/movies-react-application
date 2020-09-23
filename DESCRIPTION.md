@@ -18,7 +18,7 @@
 * [X] Display movies
 * [ ] Display Tv Shows
 * [x] Add header
-* [ ] Add footer
+* [x] Add footer
 * [ ] Check console log
 * [ ] Check responsive
 * [ ] Display error if fetching data failed
