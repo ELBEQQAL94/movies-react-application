@@ -18,7 +18,7 @@
 * [ ] Display error if fetching data failed
 * [ ] Display loading
 * [x] Add axios
-* [ ] Add bootstrap
+* [x] Add bootstrap
 * [ ] Add pagination
 * [ ] Add image loading
 * [ ] Remove application submodule
