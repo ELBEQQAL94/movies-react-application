@@ -11,10 +11,11 @@
 * [x] Add prop types
 * [x] Add eslint
 * [x] Add favicon
-* [ ] Add rows for fetch movies && tv shows
-* [ ] Fetch data from server
+* [x] Add react flip move for animation
+* [X] Add rows for fetch movies && tv shows
+* [X] Fetch data from server
 * [x] Add Router
-* [ ] Display movies
+* [X] Display movies
 * [ ] Display Tv Shows
 * [x] Add header
 * [ ] Add footer
@@ -28,6 +29,7 @@
 * [ ] Add image loading
 * [ ] Remove application submodule
 * [ ] Add Page Not Found 404!
+* [ ] Remove animations
 
 ## API's
 ----

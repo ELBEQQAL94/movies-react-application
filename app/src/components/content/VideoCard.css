@@ -1,0 +1,23 @@
+.content {
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.5s ease-out;
+}
+
+.content h2 {
+    max-height: 42px;
+    text-transform: uppercase;
+    margin-bottom: 1.2em;
+}
+
+.content:hover {
+    transform: scale(1.04);
+}
+
+.content img {
+    padding: 10px;
+    margin-top: 1em;
+    height: 300px;
+    object-fit: contain;
+    width: 100%;
+}

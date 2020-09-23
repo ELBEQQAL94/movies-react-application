@@ -1,9 +1,9 @@
 import instance from './instance';
-import request from './requests';
+import requests from './requests';
 import {BASE_IMG_URL} from './constants';
 
 export {
   instance,
-  request,
+  requests,
   BASE_IMG_URL,
 };

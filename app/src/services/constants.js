@@ -7,7 +7,7 @@ const BASE_URL = "https://api.themoviedb.org/3";
 // BASE IMAGE URL FROM TMDB API's
 const BASE_IMG_URL = "https://image.tmdb.org/t/p/original";
 
-export = {
+export {
     API_KEY,
     BASE_URL,
     BASE_IMG_URL,

@@ -20,9 +20,9 @@ const ActiveLink = ({ label, to, activeOnlyWhenExact }) => {
 };
 
 ActiveLink.propTypes = {
-    to: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    activeOnlyWhenExact: PropTypes.bool.isRequired,
+  to: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  activeOnlyWhenExact: PropTypes.bool.isRequired,
 };
 
 export default ActiveLink;

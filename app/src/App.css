@@ -1,4 +1,6 @@
-
+/*=====================
+  GLOBAL STYLES
+=======================*/
 * {
     box-sizing: border-box;
     padding: 0;
@@ -25,6 +27,37 @@ ul {
     color: yellow;
 }
 
-.app {
-    
+/*=====================
+  MEDIA QUERIE
+=======================*/
+@media all and (max-width: 575px){
+
+    /*====================
+        MAIN HEADER
+    ====================== */
+    .main__header {
+        padding: 15px;
+    }
+
+    /*====================
+        MAIN CONTENT
+    ====================== */
+    .main .main__content .row > div{
+        padding: 30px;
+    } 
+
+    .main__header .links .link__item .link {
+        font-size: 1em;
+    }
+
+    .main .main__content .content h2 {
+        font-size: 1.2em;
+        text-align: center;
+        max-height: 16px;
+    }
+
+    .main .main__content .content img{
+        height: 150px;
+        width: 100%;
+    }
 }

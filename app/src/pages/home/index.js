@@ -1,12 +1,26 @@
 import React from 'react';
 
+// props types
+import PropTypes from 'prop-types';
+
+// Components
+import {Content} from '../../components';
+
 // Style
 import './index.css';
 
-const Home = () => {
+const Home = ({selecetdOption}) => {
     return (
-        <h1>Movies</h1>
+        <main className="main">
+            <div className="container">
+                <Content selecetdOption={selecetdOption} />
+            </div>
+        </main>
     );
+};
+
+Home.propTypes = {
+    selecetdOption: PropTypes.string.isRequired,
 };
 
 export default Home;

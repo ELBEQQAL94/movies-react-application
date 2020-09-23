@@ -15,10 +15,10 @@ const NavbarToggler = () => (
       width="52"
       height="52"
       stroke="currentColor"
-      stroke-width="1"
+      strokeWidth="1"
       fill="none"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="css-i6dzq1"
     >
       <line x1="21" y1="10" x2="3" y2="10"></line>
