@@ -6,7 +6,7 @@
 
 * [x] Add repo
 * [x] Add Components Folder
-* [ ] Add services
+* [x] Add services
 * [x] Add Routers Component
 * [x] Add prop types
 * [x] Add eslint
@@ -16,7 +16,7 @@
 * [x] Add Router
 * [ ] Display movies
 * [ ] Display Tv Shows
-* [ ] Add header
+* [x] Add header
 * [ ] Add footer
 * [ ] Check console log
 * [ ] Check responsive
