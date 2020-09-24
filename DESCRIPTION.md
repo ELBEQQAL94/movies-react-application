@@ -16,22 +16,20 @@
 * [X] Fetch data from server
 * [x] Add Router
 * [X] Display movies
-* [ ] Display Tv Shows
+* [x] Display Tv Shows
 * [x] Add header
 * [x] Add footer
 * [ ] Check console log
-* [ ] Check responsive
+* [x] Check responsive
 * [x] Display error if fetching data failed
 * [x] Display loading
 * [x] Add axios
 * [x] Add bootstrap
 * [ ] Add pagination
 * [x] Add image loading
-* [ ] Remove application submodule
 * [ ] Add Page Not Found 404!
-* [ ] Remove animations
-* [ ] Make spinner display in center
-* [ ] Add contextAPI
 
 ## API's
 ----
+
+* https://api.themoviedb.org/3
