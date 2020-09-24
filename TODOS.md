@@ -33,8 +33,8 @@
 * [x] Add logic to each component
 * [x] Rename tv shows from inedx to TvShowsPageComponent
 * [x] Add MoviesPageComponent
-* [ ] Remove Routers and add Routers in App Component
-* [ ] Add array generate all routes without Page Not Found
+* [x] Remove Routers and add Routers in App Component
+* [x] Add array generate all routes without Page Not Found
 * [x] active class
 
 ## API's

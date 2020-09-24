@@ -1,53 +1,31 @@
-import React from 'react';
+import React from "react";
 
 // react router
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from 'react-router-dom';
-  
-// HEADER
-import Header from './components/header/Header';
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 
-// Footer
-import Footer from './components/footer/Footer';
+// routes 
+import { APP_ROUTES } from './routes/routes';
 
-// Pages
-import HomePageComponent from './pages/home/HomePageComponent';
-import TvShowsPageComponent from './pages/tv_shows/TvShowsPageComponent';
-import MoviesPageComponent from './pages/movies/MoviesPageComponent';
-import NotFoundPageComponent from './pages/page_not_found/NotFoundPageComponent';
+// App Route
+import AppRoute from "./AppRoute";
 
 // Style
-import './App.css';
-
+import "./App.css";
 
 const App = () => (
-    <Router>
+  <Router>
     <div className="app">
-
-      {/* HEADER */}
-      <Header />
       <Switch>
-        <Route exact path="/">
-          <HomePageComponent />
-        </Route>
-        <Route exact path="/tv-shows">
-          <TvShowsPageComponent />
-        </Route>
-        <Route exact path="/movies">
-          <MoviesPageComponent />
-        </Route>
-
-        {/* Page Not Found! */}
-        <Route path="*">
-          <NotFoundPageComponent />
-        </Route>
+        {APP_ROUTES.map(({ id, exact, path, component, layout }) => (
+          <AppRoute
+            key={id}
+            exact={exact}
+            path={path}
+            component={component}
+            layout={layout}
+          />
+        ))}
       </Switch>
-
-      {/* Footer */}
-      <Footer />
     </div>
   </Router>
 );
