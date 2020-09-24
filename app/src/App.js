@@ -16,7 +16,7 @@ const App = () => (
   <Router>
     <div className="app">
       <Switch>
-        {APP_ROUTES.map(({ id, exact, path, component, layout }) => (
+        {APP_ROUTES?.map(({ id, exact, path, component, layout }) => (
           <AppRoute
             key={id}
             exact={exact}

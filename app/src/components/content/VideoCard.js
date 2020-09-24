@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 // Styles
 import './VideoCard.css';
 
-const VideoCard = ({ movie, baseImgUrl }, ref) => {
+const VideoCard = ({ movie, baseImgUrl }) => {
   const [loadImag, setLoadImag] = useState(false);
   const { backdrop_path, poster_path } = movie;
   const title = movie?.title || movie?.name || movie?.original_name;
