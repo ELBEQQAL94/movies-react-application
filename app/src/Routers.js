@@ -1,48 +1,49 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // react router
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
 } from 'react-router-dom';
 
-// Services
-import { requests } from './services';
+// HEADER
+import Header from './components/header/Header';
 
-// Components
-import { Header, Footer } from './components';
+// Footer
+import Footer from './components/footer/Footer';
 
 // Pages
-import { Home, PageNotFound, TvShows } from './pages';
-
+import HomePageComponent from './pages/home/HomePageComponent';
+import TvShowsPageComponent from './pages/tv_shows/TvShowsPageComponent';
+import MoviesPageComponent from './pages/movies/MoviesPageComponent';
+import NotFoundPageComponent from './pages/page_not_found/NotFoundPageComponent';
 const Routers = () => {
-
-  const [selecetdOption, setSelecetdOption] = useState(requests.fetchMovies);
 
   return (
     <Router>
       <div className="app">
 
         {/* HEADER */}
-        <Header 
-          setSelecetdOption={setSelecetdOption} 
-        />
+        <Header />
         <Switch>
-          <Route exact path='/'>
-            <Home selecetdOption={selecetdOption} />
+          <Route exact path="/">
+            <HomePageComponent />
           </Route>
-          <Route path='/tv-shows'>
-            <TvShows selecetdOption={selecetdOption} />
+          <Route exact path="/tv-shows">
+            <TvShowsPageComponent />
+          </Route>
+          <Route exact path="/movies">
+            <MoviesPageComponent />
           </Route>
 
-          {/* Page Not Found!*/}
-          <Route path='*'>
-            <PageNotFound />
+          {/* Page Not Found! */}
+          <Route path="*">
+            <NotFoundPageComponent />
           </Route>
         </Switch>
 
-        {/* Footer*/}
+        {/* Footer */}
         <Footer />
       </div>
     </Router>

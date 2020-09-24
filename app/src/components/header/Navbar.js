@@ -1,7 +1,4 @@
-import React from "react";
-
-// Types
-import PropTypes from "prop-types";
+import React from 'react';
 
 // Components
 import Logo from './Logo';
@@ -9,29 +6,21 @@ import NavbarToggler from './NavbarToggler';
 import NavbarLinks from './NavbarLinks';
 
 // Style
-import "./Navbar.css";
+import './Navbar.css';
 
-const Navbar = ({setSelecetdOption}) => {
-  return (
-    <nav className="navbar navbar-expand-lg">
+const Navbar = () => (
+  <nav className="navbar navbar-expand-lg">
 
-      {/* Logo */}
-      <Logo />
+    {/* Logo */}
+    <Logo />
 
-      {/* Navbar Toggler*/}
-      <NavbarToggler />
+    {/* Navbar Toggler */}
+    <NavbarToggler />
 
-      {/* Navbar Links */}
-      <NavbarLinks 
-        setSelecetdOption={setSelecetdOption} 
-      />
-      
-    </nav>
-  );
-};
+    {/* Navbar Links */}
+    <NavbarLinks />
 
-Navbar.propTypes = {
-  setSelecetdOption: PropTypes.func.isRequired,
-};
+  </nav>
+);
 
 export default Navbar;

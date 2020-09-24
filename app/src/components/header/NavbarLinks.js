@@ -1,42 +1,35 @@
-import React from "react";
-
-// Types
-import PropTypes from "prop-types";
-
-// requests
-import {requests} from '../../services';
+import React from 'react';
 
 // Components
-import ActiveLink from './ActiveLink';
+import CustomeLink from './ActiveLink';
 
-const NavbarLinks = ({setSelecetdOption}) => {
-
-  return (
-    <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav">
-        <li 
-          className="nav-item" 
-          onClick={() => setSelecetdOption(requests.fetchMovies)}
-        >
-          <ActiveLink 
-            activeOnlyWhenExact={true} 
-            to="/" 
-            label="Movies" 
-          />
-        </li>
-        <li 
-          className="nav-item"
-          onClick={() => setSelecetdOption(requests.fetchTvShows)}
-        >
-          <ActiveLink to="/tv-shows" label="Tv Shows"/>
-        </li>
-      </ul>
-    </div>
-  );
-};
-
-NavbarLinks.propTypes = {
-  setSelecetdOption: PropTypes.func.isRequired,
-};
+const NavbarLinks = () => (
+  <div className="collapse navbar-collapse" id="navbarNav">
+    <ul className="navbar-nav">
+      <li
+        className="nav-item"
+      >
+        <CustomeLink
+          activeOnlyWhenExact
+          to="/"
+          label="Home"
+        />
+      </li>
+      <li
+        className="nav-item"
+      >
+        <CustomeLink
+          to="/movies"
+          label="Movies"
+        />
+      </li>
+      <li
+        className="nav-item"
+      >
+        <CustomeLink to="/tv-shows" label="Tv Shows" />
+      </li>
+    </ul>
+  </div>
+);
 
 export default NavbarLinks;

@@ -1,7 +1,7 @@
 ### Movies React Application
 ----
 
-## TODO:
+## TODOS:
 ----
 
 * [x] Add repo
@@ -28,6 +28,14 @@
 * [ ] Add pagination
 * [x] Add image loading
 * [ ] Add Page Not Found 404!
+* [x] Create services for movies and tv shows
+* [x] Deleted selected option
+* [x] Add logic to each component
+* [x] Rename tv shows from inedx to TvShowsPageComponent
+* [x] Add MoviesPageComponent
+* [ ] Remove Routers and add Routers in App Component
+* [ ] Add array generate all routes without Page Not Found
+* [x] active class
 
 ## API's
 ----
