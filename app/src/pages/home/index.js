@@ -6,9 +6,6 @@ import PropTypes from 'prop-types';
 // Components
 import {Content} from '../../components';
 
-// Style
-import './index.css';
-
 const Home = ({selecetdOption}) => {
     return (
         <main className="main">

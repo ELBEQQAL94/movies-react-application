@@ -21,12 +21,12 @@
 * [x] Add footer
 * [ ] Check console log
 * [ ] Check responsive
-* [ ] Display error if fetching data failed
-* [ ] Display loading
+* [x] Display error if fetching data failed
+* [x] Display loading
 * [x] Add axios
 * [x] Add bootstrap
 * [ ] Add pagination
-* [ ] Add image loading
+* [x] Add image loading
 * [ ] Remove application submodule
 * [ ] Add Page Not Found 404!
 * [ ] Remove animations

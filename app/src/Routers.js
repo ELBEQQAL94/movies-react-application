@@ -27,14 +27,13 @@ const Routers = () => {
         {/* HEADER */}
         <Header 
           setSelecetdOption={setSelecetdOption} 
-          selecetdOption={selecetdOption} 
         />
         <Switch>
           <Route exact path='/'>
             <Home selecetdOption={selecetdOption} />
           </Route>
           <Route path='/tv-shows'>
-            <TvShows />
+            <TvShows selecetdOption={selecetdOption} />
           </Route>
 
           {/* Page Not Found!*/}

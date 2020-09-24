@@ -1,12 +1,23 @@
 import React from 'react';
 
-// Style
-import './index.css';
+// props types
+import PropTypes from 'prop-types';
 
-const TvShows = () => {
+// Components
+import {Content} from '../../components';
+
+const TvShows = ({selecetdOption}) => {
     return (
-        <h1>Tv Shows Page</h1>
+        <main className="main">
+            <div className="container">
+                <Content selecetdOption={selecetdOption} />
+            </div>
+        </main>
     );
+};
+
+TvShows.propTypes = {
+    selecetdOption: PropTypes.string.isRequired,
 };
 
 export default TvShows;
