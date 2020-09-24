@@ -20,8 +20,8 @@ const AppRoute = ({
 };
 
 AppRoute.propTypes = {
-    component: PropTypes.node.isRequired,
-    layout: PropTypes.node.isRequired,
+    component: PropTypes.func.isRequired,
+    layout: PropTypes.func.isRequired,
 };
 
 export default AppRoute;
