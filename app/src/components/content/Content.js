@@ -1,7 +1,9 @@
 import React from 'react';
 
-// Service
+// Prop Types
 import PropTypes from 'prop-types';
+
+// base image api
 import { BASE_IMG_URL } from '../../services/constants';
 
 
