@@ -4,7 +4,7 @@ import instance from './instance';
 // GET MOVIES
 import { GET_TV_SHOWS } from './constants';
 
-async function fetchMovies(setTvShows, setLoading, setError) {
+async function fetchTvShows(setTvShows, setLoading, setError) {
     try {
       const response = await instance.get(GET_TV_SHOWS);
       setTvShows(response.data.results);
@@ -15,4 +15,4 @@ async function fetchMovies(setTvShows, setLoading, setError) {
     };
 };
 
-export default fetchMovies;
+export default fetchTvShows;

@@ -10,11 +10,11 @@ import Header from '../header/Header';
 import Footer from '../footer/Footer';
 
 const MainLayout = ({children}) => (
-    <div>
+    <>
         <Header />
         {children}
         <Footer />
-    </div>
+    </>
 );
 
 MainLayout.propTypes = {

@@ -36,6 +36,8 @@
 * [x] Remove Routers and add Routers in App Component
 * [x] Add array generate all routes without Page Not Found
 * [x] active class
+* [ ] Modified fetching functions by this {response, error}
+* [x] Modify Main Layout 
 
 ## API's
 ----
