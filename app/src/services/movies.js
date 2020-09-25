@@ -4,14 +4,13 @@ import instance from './instance';
 // GET MOVIES
 import { GET_MOVIES } from './constants';
 
-async function fetchMovies(setMovies, setLoading, setError) {
+async function fetchMovies() {
     try {
       const response = await instance.get(GET_MOVIES);
-      setMovies(response.data.results);
-      setLoading(false);
+      const movies = response.data.results;
+      return movies;
     } catch (error) {
-      setLoading(false);
-      setError(true);
+      return error;
     };
 };
 

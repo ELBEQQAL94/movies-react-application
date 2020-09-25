@@ -13,7 +13,16 @@ const MoviesPageComponent = () => {
     const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetchMovies(setMovies, setLoading, setError);
+    async function fetchData() {
+        const movies = await fetchMovies();
+        if(!movies) {
+            setLoading(false);
+            setError(true);
+        }
+        setMovies(movies);
+        setLoading(false);
+    };
+    fetchData();
   }, []);
 
     return(
