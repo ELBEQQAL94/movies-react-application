@@ -39,6 +39,9 @@
 * [x] Modified fetching functions by this {response, error}
 * [x] Modify Main Layout 
 * [ ] Filter by /results?sort_by=release_date.desc
+* [ ] Keep filter query in cache (use local storage)
+* [ ] Add react flip move to content component
+* [ ] Displat sort router in UI
 
 ## API's
 ----
