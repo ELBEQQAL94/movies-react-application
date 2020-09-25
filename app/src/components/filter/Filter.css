@@ -1,0 +1,9 @@
+.filter {
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 4em;
+    padding: 20px;
+}
+
+.filter h2 {
+    margin-bottom: 1em;
+}
