@@ -7,3 +7,12 @@
 .filter h2 {
     margin-bottom: 1em;
 }
+
+.filter form {
+    display: flex;
+    align-items: center;
+}
+
+.filter form > div {
+    margin-left: 20px;
+}

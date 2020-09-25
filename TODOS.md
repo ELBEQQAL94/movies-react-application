@@ -41,7 +41,8 @@
 * [ ] Filter by /results?sort_by=release_date.desc
 * [ ] Keep filter query in cache (use local storage)
 * [ ] Add react flip move to content component
-* [ ] Displat sort router in UI
+* [x] Displat sort router in UI
+* [ ] Test sort by for two parameters
 
 ## API's
 ----
