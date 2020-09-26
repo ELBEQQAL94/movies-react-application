@@ -25,7 +25,7 @@ const MoviesPageComponent = () => {
             setLoading(false);
         };
         fetchData();
-  }, []);
+    }, []);
 
 
     return(
