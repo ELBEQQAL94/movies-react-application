@@ -53,6 +53,7 @@ const Filter = ({
     const onChangeReleaseDate = (e) => {
         // store ReleaseDate value in local storage
         setReleaseDate(!isReleaseDate);
+        
         // check if isReleaseDate is true
         if(!isReleaseDate) {
             setSortBy(e.target.name);
