@@ -38,13 +38,13 @@
 * [x] active class
 * [x] Modified fetching functions by this {response, error}
 * [x] Modify Main Layout 
-* [ ] Filter by /results?sort_by=release_date.desc
-* [ ] Keep filter query in cache (use local storage)
-* [ ] Add react flip move to content component
+* [x] Filter by /results?sort_by=release_date.desc
+    * https://developers.themoviedb.org/3/discover/movie-discover
+* [x] Keep filter query in cache (use local storage)
 * [x] Displat sort router in UI
-* [ ] Test sort by for two parameters
 
 ## API's
 ----
 
 * https://api.themoviedb.org/3
+* https://api.themoviedb.org/3/discover/movie?api_key=27a06a6fe752225bcecc30870f193be2

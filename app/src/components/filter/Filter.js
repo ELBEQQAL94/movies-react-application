@@ -30,7 +30,6 @@ const Filter = ({
 
     // Hooks
     const [isReleaseDate, setReleaseDate] = useState(isReleaseDateFromLocalStorage);
-    const [isVoteAverage, setVoteAverage] = useState(false);
     const [sortBy, setSortBy] = useState(sortByFromLocalStorage);
 
     useEffect(() => {
@@ -72,24 +71,12 @@ const Filter = ({
         } else {
             setSortBy('');
 
-            // // set sortBy value in local storage to null
-            // localStorage.setItem("sort_by", '');
-
-            // // set isRealeaseDate value in local storage to false
-            // localStorage.setItem("is_release_date", false);
-
             // // remove query from current path
             history.replace("/movies");
 
-            // todos 
             // clear storage
-            //localStorage.setItem("query", '/movies');
             localStorage.clear();
         };
-    };
-
-    const onChangeVoteAverage = () => {
-        setVoteAverage(!isVoteAverage);
     };
 
     return (
@@ -108,19 +95,6 @@ const Filter = ({
                     <label 
                         className="form-check-label" htmlFor="release_date"
                     >Release Date</label>
-                </div>
-                <div className="form-group form-check">
-                    <input 
-                        id="vote_average"
-                        type="checkbox" 
-                        className="form-check-input"
-                        name="vote_average.desc"
-                        checked={isVoteAverage}
-                        onChange={onChangeVoteAverage}
-                    />
-                    <label 
-                        className="form-check-label" htmlFor="vote_average"
-                    >Vote Average</label>
                 </div>
             </form>
         </div>
