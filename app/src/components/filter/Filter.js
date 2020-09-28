@@ -15,7 +15,7 @@ import { setYears, convertParamsToValidUrl } from '../../utils';
 import './Filter.css';
 
 const Filter = ({
-    setMovies, 
+    setFilterMovies, 
     setLoading, 
     setError
 }) => {
@@ -45,18 +45,23 @@ const Filter = ({
 
     useEffect(() => {
         async function fetchData() {
+
+            // store params in local storage
             localStorage.setItem("params", JSON.stringify(params));
+
+            // display query in current path
             history.replace(`/movies?${convertParamsToValidUrl(params)}`);
+
             const movies = await sortMovies(params);
             if(!movies) {
                 setLoading(false);
                 setError(true);
             }
-            setMovies(movies);
+            setFilterMovies(movies);
             setLoading(false);
         };
         fetchData();
-    }, [params, setMovies, history, setLoading, setError]);
+    }, [params, setFilterMovies, history, setLoading, setError]);
 
     const onValueChange = (e) => {
         let sort_by = e.target.value;
@@ -74,10 +79,7 @@ const Filter = ({
         localStorage.setItem("sort_by", e.target.value);
 
         // store query in local storage
-        localStorage.setItem("query", `/movies?sort_by=${e.target.value}`);
-        
-        // add query to current path
-        history.replace(`/movies?sort_by=${e.target.value}`);
+        localStorage.setItem("query", `/movies?sort_by=${e.target.value}`);        
     };
 
     // handle language if changed
@@ -201,7 +203,7 @@ const Filter = ({
 };
 
 Filter.propTypes = {
-    setMovies: PropTypes.func.isRequired,
+    setFilterMovies: PropTypes.func.isRequired,
     setLoading: PropTypes.func.isRequired,
     setError: PropTypes.func.isRequired,
 };

@@ -10,7 +10,7 @@ import Filter from '../../components/filter/Filter';
 
 const MoviesPageComponent = () => {
     const [movies, setMovies] = useState([]);
-    //const [filterMovies, setFilterMovies] = useState([]);
+    const [filterMovies, setFilterMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -32,7 +32,7 @@ const MoviesPageComponent = () => {
         <main className="main">
             <div className="container">
                 <Filter 
-                    setMovies={setMovies} 
+                    setFilterMovies={setFilterMovies} 
                     setLoading={setLoading} 
                     setError={setError}
                 />
@@ -41,7 +41,9 @@ const MoviesPageComponent = () => {
                    loading ? 
                    (
                         <Spinner />
-                    ) : movies.length > 0 && (
+                    ) : filterMovies.length > 0 ? (
+                        <Content content={filterMovies} />          
+                    ) : (
                         <Content content={movies} />          
                     )
                 }
