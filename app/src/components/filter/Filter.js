@@ -82,11 +82,11 @@ const Filter = ({
 
     // handle language if changed
     const onLangChange = (e) => {
-        let lang = e.target.value;
-        setSelectedLang(lang);
+        let language = e.target.value;
+        setSelectedLang(language);
         setParams(previousParams =>({
             ...previousParams,
-            lang,
+            language,
         }));
     };
 
@@ -177,6 +177,7 @@ const Filter = ({
                         <option value='en'>en</option>
                         <option value='es'>es</option>
                         <option value='fr'>fr</option>
+                        <option value='ar'>ar</option>
                     </select>
                 </div>
 
