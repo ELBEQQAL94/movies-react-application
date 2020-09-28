@@ -8,6 +8,9 @@ import Content from '../../components/content/Content';
 import Spinner from '../../components/elements/Spinner';
 import Filter from '../../components/filter/Filter';
 
+// Style
+import './MoviesPageComponent.css';
+
 const MoviesPageComponent = () => {
     const [movies, setMovies] = useState([]);
     const [filterMovies, setFilterMovies] = useState([]);
@@ -40,7 +43,9 @@ const MoviesPageComponent = () => {
                 {
                    loading ? 
                    (
-                        <Spinner />
+                        <div className="spinner__container">
+                            <Spinner />
+                        </div>
                     ) : filterMovies.length > 0 ? (
                         <Content content={filterMovies} />          
                     ) : (

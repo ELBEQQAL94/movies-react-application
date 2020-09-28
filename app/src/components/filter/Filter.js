@@ -11,6 +11,9 @@ import sortMovies from '../../services/sortMovies';
 // utils
 import { setYears, convertParamsToValidUrl } from '../../utils';
 
+// Components
+import Collapse from '../collapse/Collapse';
+
 // Style
 import './Filter.css';
 
@@ -99,102 +102,103 @@ const Filter = ({
     };
 
     return (
-        <div className='filter'>
-            <h2>Filter</h2>
-            <form>
-                {/* release_date.desc */}
-                <div className="form-group form-check">
-                    <input 
-                        id="release_date"
-                        type="radio" 
-                        value="release_date.desc"
-                        className="form-check-input"
-                        name="sort"
-                        checked={sortBy === "release_date.desc"}
-                        onChange={onValueChange}
-                    />
-                    <label 
-                        className="form-check-label" htmlFor="release_date"
-                    >Release Date</label>
-                </div>
+        <Collapse>
+            <div className='filter'>
+                <form>
+                    {/* release_date.desc */}
+                    <div className="form-group form-check">
+                        <input 
+                            id="release_date"
+                            type="radio" 
+                            value="release_date.desc"
+                            className="form-check-input"
+                            name="sort"
+                            checked={sortBy === "release_date.desc"}
+                            onChange={onValueChange}
+                        />
+                        <label 
+                            className="form-check-label" htmlFor="release_date"
+                        >Release Date</label>
+                    </div>
 
-                {/* revenue.desc */}
-                <div className="form-group form-check">
-                    <input 
-                        id="revenue"
-                        type="radio" 
-                        className="form-check-input"
-                        value="revenue.desc"
-                        name="sort"
-                        checked={sortBy === "revenue.desc"}
-                        onChange={onValueChange}
-                    />
-                    <label 
-                        className="form-check-label" htmlFor="revenue"
-                    >Revenue</label>
-                </div>
+                    {/* revenue.desc */}
+                    <div className="form-group form-check">
+                        <input 
+                            id="revenue"
+                            type="radio" 
+                            className="form-check-input"
+                            value="revenue.desc"
+                            name="sort"
+                            checked={sortBy === "revenue.desc"}
+                            onChange={onValueChange}
+                        />
+                        <label 
+                            className="form-check-label" htmlFor="revenue"
+                        >Revenue</label>
+                    </div>
 
-                {/* popularity.desc */}
-                <div className="form-group form-check">
-                    <input 
-                        id="popularity"
-                        type="radio" 
-                        className="form-check-input"
-                        value="popularity.desc"
-                        name="sort"
-                        checked={sortBy === "popularity.desc"}
-                        onChange={onValueChange}
-                    />
-                    <label 
-                        className="form-check-label" htmlFor="popularity"
-                    >Popularity</label>
-                </div>
+                    {/* popularity.desc */}
+                    <div className="form-group form-check">
+                        <input 
+                            id="popularity"
+                            type="radio" 
+                            className="form-check-input"
+                            value="popularity.desc"
+                            name="sort"
+                            checked={sortBy === "popularity.desc"}
+                            onChange={onValueChange}
+                        />
+                        <label 
+                            className="form-check-label" htmlFor="popularity"
+                        >Popularity</label>
+                    </div>
 
-                {/* vote_average.desc */}
-                <div className="form-group form-check">
-                    <input 
-                        id="vote_average"
-                        type="radio" 
-                        className="form-check-input"
-                        value="vote_average.desc"
-                        name="sort"
-                        checked={sortBy === "vote_average.desc"}
-                        onChange={onValueChange}
-                    />
-                    <label 
-                        className="form-check-label" htmlFor="vote_average"
-                    >Vote Average</label>
-                </div>
+                    {/* vote_average.desc */}
+                    <div className="form-group form-check">
+                        <input 
+                            id="vote_average"
+                            type="radio" 
+                            className="form-check-input"
+                            value="vote_average.desc"
+                            name="sort"
+                            checked={sortBy === "vote_average.desc"}
+                            onChange={onValueChange}
+                        />
+                        <label 
+                            className="form-check-label" htmlFor="vote_average"
+                        >Vote Average</label>
+                    </div>
 
-                <div 
-                    className="form-group" 
-                    value={selectedLang}
-                    onChange={onLangChange}>
-                    <select className="form-control">
-                        <option value=''>Choose language...</option>
-                        <option value='en'>en</option>
-                        <option value='es'>es</option>
-                        <option value='fr'>fr</option>
-                        <option value='ar'>ar</option>
-                    </select>
-                </div>
+                    <div 
+                        className="form-group" 
+                        value={selectedLang}
+                        onChange={onLangChange}>
+                        <select className="form-control">
+                            <option value=''>Choose language...</option>
+                            <option value='en'>en</option>
+                            <option value='es'>es</option>
+                            <option value='fr'>fr</option>
+                            <option value='ar'>ar</option>
+                        </select>
+                    </div>
 
-                <div 
-                    className="form-group" 
-                    value={selectedYear}
-                    onChange={onYearChange}>
-                    <select className="form-control">
-                        <option value=''>Choose year...</option>
-                        {
-                            years.map((year) => (
-                                <option key={year} value={year}>{year}</option>
-                            ))
-                        }
-                    </select>
-                </div>
+                    <div 
+                        className="form-group" 
+                        value={selectedYear}
+                        onChange={onYearChange}>
+                        <select className="form-control">
+                            <option value=''>Choose year...</option>
+                            {
+                                years.map((year) => (
+                                    <option key={year} value={year}>{year}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
 
-            </form>
-        </div>
+                </form>
+            </div>
+        </Collapse>
     );
 };
 
