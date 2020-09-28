@@ -45,7 +45,8 @@ const MoviesPageComponent = () => {
                         <Content content={filterMovies} />          
                     ) : (
                         <Content content={movies} />          
-                    )}
+                    )
+                }
             </div>
         </main>
     );
