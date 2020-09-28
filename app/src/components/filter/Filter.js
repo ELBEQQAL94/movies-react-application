@@ -74,12 +74,8 @@ const Filter = ({
             ...previousParams,
             sort_by,
         }));
-
         // store selected option value in local storage
         localStorage.setItem("sort_by", e.target.value);
-
-        // store query in local storage
-        localStorage.setItem("query", `/movies?sort_by=${e.target.value}`);        
     };
 
     // handle language if changed
