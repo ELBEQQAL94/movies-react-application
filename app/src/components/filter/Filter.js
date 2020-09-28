@@ -15,7 +15,7 @@ import { setYears, convertParamsToValidUrl } from '../../utils';
 import './Filter.css';
 
 const Filter = ({
-    setFilterMovies, 
+    setMovies, 
     setLoading, 
     setError
 }) => {
@@ -44,23 +44,19 @@ const Filter = ({
     const years = setYears();
 
     useEffect(() => {
-        if(sortBy.length > 0 || selectedLang.length > 0 || selectedYear.length > 0) {
-            async function fetchData() {
-                localStorage.setItem("params", JSON.stringify(params));
-                history.replace(`/movies?${convertParamsToValidUrl(params)}`);
-                const movies = await sortMovies(params);
-                if(!movies) {
-                    setLoading(false);
-                    setError(true);
-                }
-                setFilterMovies(movies);
+        async function fetchData() {
+            localStorage.setItem("params", JSON.stringify(params));
+            history.replace(`/movies?${convertParamsToValidUrl(params)}`);
+            const movies = await sortMovies(params);
+            if(!movies) {
                 setLoading(false);
-            };
-            fetchData();
-        } else {
-            setFilterMovies([]);
-        }
-    }, [sortBy, params, history, setFilterMovies, setLoading, setError, selectedLang, selectedYear]);
+                setError(true);
+            }
+            setMovies(movies);
+            setLoading(false);
+        };
+        fetchData();
+    }, [params, setMovies, history, setLoading, setError]);
 
     const onValueChange = (e) => {
         let sort_by = e.target.value;
@@ -204,7 +200,7 @@ const Filter = ({
 };
 
 Filter.propTypes = {
-    setFilterMovies: PropTypes.func.isRequired,
+    setMovies: PropTypes.func.isRequired,
     setLoading: PropTypes.func.isRequired,
     setError: PropTypes.func.isRequired,
 };
