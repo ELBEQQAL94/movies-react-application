@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 // Prop Types
 import PropTypes from 'prop-types';
@@ -22,9 +22,6 @@ const Filter = ({
 
     let history = useHistory();
 
-    // get query from local storage
-    //const getQueryFromLocalStorage = localStorage.getItem('query') || '/movies';
-
     // get params from local storage 
     const getParamsFromLocalStorage = JSON.parse(localStorage.getItem('params')) || {};
     
@@ -40,8 +37,10 @@ const Filter = ({
     // filter by year
     const [selectedYear, setSelectedYear] = useState('');
 
+    // filter params (sorty_by, year, lang)
     const [params, setParams] = useState(getParamsFromLocalStorage);
 
+    // generate years from 1994
     const years = setYears();
 
     useEffect(() => {
