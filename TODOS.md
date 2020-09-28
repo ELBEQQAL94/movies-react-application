@@ -42,8 +42,8 @@
     * https://developers.themoviedb.org/3/discover/movie-discover
 * [x] Keep filter query in cache (use local storage)
 * [x] Displat sort router in UI
-* [ ] Filter by: Language, certification_country, primary_release_year
-* [ ] ? language=es&certification_country=us&primary_release_year=2020&sort_by=release_date.desc
+* [x] Filter by: Language, certification_country, primary_release_year
+    * https://api.themoviedb.org/3/discover/movie?api_key=27a06a6fe752225bcecc30870f193be2&page=3&sort_by=release_date.desc&primary_release_year=2000&certification_country=us
 
 ## API's
 ----
