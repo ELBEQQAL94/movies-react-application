@@ -8,6 +8,9 @@ import PropTypes from 'prop-types';
 // SORT MOVIES FROM SERVER
 import sortMovies from '../../services/sortMovies';
 
+// utils
+import { setYears, convertParamsToValidUrl } from '../../utils';
+
 // Style
 import './Filter.css';
 
@@ -20,18 +23,33 @@ const Filter = ({
     let history = useHistory();
 
     // get query from local storage
-    const getQueryFromLocalStorage = localStorage.getItem('query') || '/movies';
+    //const getQueryFromLocalStorage = localStorage.getItem('query') || '/movies';
 
+    // get params from local storage 
+    const getParamsFromLocalStorage = JSON.parse(localStorage.getItem('params')) || {};
+    
     // get filter from local storage
-    const getFilterFromLocalStorage = localStorage.getItem('filter') || '';
+    const getSortByFromLocalStorage = localStorage.getItem('sort_by') || '';
 
-    // Hooks
-    const [filter, setFilter] = useState(getFilterFromLocalStorage);
+    // Sort by
+    const [sortBy, setSortBy] = useState(getSortByFromLocalStorage);
+
+    // filter by language
+    const [selectedLang, setSelectedLang] = useState('');
+
+    // filter by year
+    const [selectedYear, setSelectedYear] = useState('');
+
+    const [params, setParams] = useState(getParamsFromLocalStorage);
+
+    const years = setYears();
 
     useEffect(() => {
-        if(filter.length > 0) {
+        if(sortBy.length > 0 || selectedLang.length > 0 || selectedYear.length > 0) {
             async function fetchData() {
-                const movies = await sortMovies(filter);
+                localStorage.setItem("params", JSON.stringify(params));
+                history.replace(`/movies?${convertParamsToValidUrl(params)}`);
+                const movies = await sortMovies(params);
                 if(!movies) {
                     setLoading(false);
                     setError(true);
@@ -40,24 +58,51 @@ const Filter = ({
                 setLoading(false);
             };
             fetchData();
-            history.replace(getQueryFromLocalStorage);
         } else {
             setFilterMovies([]);
         }
-    }, [filter, setFilterMovies, setLoading, setError]);
+    }, [sortBy, params, history, setFilterMovies, setLoading, setError, selectedLang, selectedYear]);
 
     const onValueChange = (e) => {
+        let sort_by = e.target.value;
+
         // store ReleaseDate value in local storage
-        setFilter(e.target.value);
+        setSortBy(sort_by);
+
+        // set sort_by in query string
+        setParams(previousParams =>({
+            ...previousParams,
+            sort_by,
+        }));
 
         // store selected option value in local storage
-        localStorage.setItem("filter", e.target.value);
+        localStorage.setItem("sort_by", e.target.value);
 
         // store query in local storage
         localStorage.setItem("query", `/movies?sort_by=${e.target.value}`);
         
         // add query to current path
         history.replace(`/movies?sort_by=${e.target.value}`);
+    };
+
+    // handle language if changed
+    const onLangChange = (e) => {
+        let lang = e.target.value;
+        setSelectedLang(lang);
+        setParams(previousParams =>({
+            ...previousParams,
+            lang,
+        }));
+    };
+
+    // handle language if changed
+    const onYearChange = (e) => {
+        let year = e.target.value;
+        setSelectedYear(year);
+        setParams(previousParams =>({
+            ...previousParams,
+            year,
+        }));
     };
 
     return (
@@ -71,8 +116,8 @@ const Filter = ({
                         type="radio" 
                         value="release_date.desc"
                         className="form-check-input"
-                        name="filter"
-                        checked={filter === "release_date.desc"}
+                        name="sort"
+                        checked={sortBy === "release_date.desc"}
                         onChange={onValueChange}
                     />
                     <label 
@@ -87,8 +132,8 @@ const Filter = ({
                         type="radio" 
                         className="form-check-input"
                         value="revenue.desc"
-                        name="filter"
-                        checked={filter === "revenue.desc"}
+                        name="sort"
+                        checked={sortBy === "revenue.desc"}
                         onChange={onValueChange}
                     />
                     <label 
@@ -103,8 +148,8 @@ const Filter = ({
                         type="radio" 
                         className="form-check-input"
                         value="popularity.desc"
-                        name="filter"
-                        checked={filter === "popularity.desc"}
+                        name="sort"
+                        checked={sortBy === "popularity.desc"}
                         onChange={onValueChange}
                     />
                     <label 
@@ -119,14 +164,41 @@ const Filter = ({
                         type="radio" 
                         className="form-check-input"
                         value="vote_average.desc"
-                        name="filter"
-                        checked={filter === "vote_average.desc"}
+                        name="sort"
+                        checked={sortBy === "vote_average.desc"}
                         onChange={onValueChange}
                     />
                     <label 
                         className="form-check-label" htmlFor="vote_average"
                     >Vote Average</label>
                 </div>
+
+                <div 
+                    className="form-group" 
+                    value={selectedLang}
+                    onChange={onLangChange}>
+                    <select className="form-control">
+                        <option value=''>Choose language...</option>
+                        <option value='en'>en</option>
+                        <option value='es'>es</option>
+                        <option value='fr'>fr</option>
+                    </select>
+                </div>
+
+                <div 
+                    className="form-group" 
+                    value={selectedYear}
+                    onChange={onYearChange}>
+                    <select className="form-control">
+                        <option value=''>Choose year...</option>
+                        {
+                            years.map((year) => (
+                                <option key={year} value={year}>{year}</option>
+                            ))
+                        }
+                    </select>
+                </div>
+
             </form>
         </div>
     );

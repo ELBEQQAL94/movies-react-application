@@ -11,6 +11,7 @@
 .filter form {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .filter form > div {

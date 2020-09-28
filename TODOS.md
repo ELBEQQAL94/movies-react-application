@@ -42,9 +42,8 @@
     * https://developers.themoviedb.org/3/discover/movie-discover
 * [x] Keep filter query in cache (use local storage)
 * [x] Displat sort router in UI
-* [ ] Remove filterMovies instead add movies and setMovies as props
-* [ ] If no query selected return movies
-* [ ] In Movies component greb query use react router and then passed it to get movies api.
+* [ ] Filter by: Language, certification_country, primary_release_year
+* [ ] ? language=es&certification_country=us&primary_release_year=2020&sort_by=release_date.desc
 
 ## API's
 ----

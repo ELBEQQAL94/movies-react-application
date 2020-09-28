@@ -2,11 +2,15 @@
 import instance from './instance';
 
 // GET MOVIES
-import { SORT_MOVIES } from './constants';
+import { GET_MOVIES } from './constants';
 
-async function sortMovies(sortBy) {
+// convert params to valid query url
+import {convertParamsToValidUrl} from '../utils';
+
+async function sortMovies(params) {
+    const queries = convertParamsToValidUrl(params);
     try {
-      const response = await instance.get(`${SORT_MOVIES}${sortBy}`);
+      const response = await instance.get(`${GET_MOVIES}&${queries}`);
       const movies = response.data.results;
       return movies;
     } catch (error) {

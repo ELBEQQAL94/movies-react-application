@@ -13,14 +13,10 @@ const GET_TV_SHOWS = `/discover/tv?api_key=${API_KEY}`;
 // GET TV SHOWS
 const GET_MOVIES = `/discover/movie?api_key=${API_KEY}`;
 
-// SORT_MOVIES
-const SORT_MOVIES = `/discover/movie?api_key=${API_KEY}&sort_by=`;
-
 export {
   API_KEY,
   BASE_URL,
   BASE_IMG_URL,
   GET_MOVIES,
   GET_TV_SHOWS,
-  SORT_MOVIES,
 };
