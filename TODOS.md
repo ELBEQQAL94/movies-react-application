@@ -46,11 +46,12 @@
     * https://api.themoviedb.org/3/discover/movie?api_key=27a06a6fe752225bcecc30870f193be2&page=3&sort_by=release_date.desc&primary_release_year=2000&certification_country=us
 * [x] Solid principals
 * [x] Add query
-* [ ] Remove query
+* [x] Remove query
 * [x] Remove local storage
 * [x] Replace history.replace by history.push
-* [ ] Add one function handle filters
+* [x] Add one function handle filters
 * [x] Test url in other browser
+* ref: https://stackoverflow.com/questions/40161516/how-do-you-programmatically-update-query-params-in-react-router
 
 ## API's
 ----
