@@ -45,12 +45,12 @@
 * [x] Filter by: Language, certification_country, primary_release_year
     * https://api.themoviedb.org/3/discover/movie?api_key=27a06a6fe752225bcecc30870f193be2&page=3&sort_by=release_date.desc&primary_release_year=2000&certification_country=us
 * [x] Solid principals
-* [ ] Add query
+* [x] Add query
 * [ ] Remove query
-* [ ] Remove local storage
-* [ ] Replace history.replace by history.push
+* [x] Remove local storage
+* [x] Replace history.replace by history.push
 * [ ] Add one function handle filters
-* [ ] Test url in other browser
+* [x] Test url in other browser
 
 ## API's
 ----

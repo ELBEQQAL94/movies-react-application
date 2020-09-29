@@ -41,9 +41,7 @@ const Filter = ({
 
     useEffect(() => {
         async function fetchData() {
-
             const movies = await filterMoviesService(searchParams);
-
             if(!movies) {
                 setLoading(false);
                 setError(true);
@@ -54,12 +52,10 @@ const Filter = ({
         fetchData();
     }, [searchParams, setFilterMovies, setLoading, setError]);
 
-    const onValueChange = (e) => {
+    const onSortChange = (e) => {
         let sort_by = e.target.value;
-
         // change sort by value
         setSortBy(sort_by);
-
         // add query
         addQuery('sort_by', sort_by, location, history);
     };
@@ -95,7 +91,7 @@ const Filter = ({
                             className="form-check-input"
                             name="sort"
                             checked={sortBy === "release_date.desc"}
-                            onChange={onValueChange}
+                            onChange={onSortChange}
                         />
                         <label 
                             className="form-check-label" htmlFor="release_date"
@@ -111,7 +107,7 @@ const Filter = ({
                             value="revenue.desc"
                             name="sort"
                             checked={sortBy === "revenue.desc"}
-                            onChange={onValueChange}
+                            onChange={onSortChange}
                         />
                         <label 
                             className="form-check-label" htmlFor="revenue"
@@ -127,7 +123,7 @@ const Filter = ({
                             value="popularity.desc"
                             name="sort"
                             checked={sortBy === "popularity.desc"}
-                            onChange={onValueChange}
+                            onChange={onSortChange}
                         />
                         <label 
                             className="form-check-label" htmlFor="popularity"
@@ -143,7 +139,7 @@ const Filter = ({
                             value="vote_average.desc"
                             name="sort"
                             checked={sortBy === "vote_average.desc"}
-                            onChange={onValueChange}
+                            onChange={onSortChange}
                         />
                         <label 
                             className="form-check-label" htmlFor="vote_average"
@@ -176,7 +172,6 @@ const Filter = ({
                             }
                         </select>
                     </div>
-
                 </form>
             </div>
         </Collapse>
