@@ -66,7 +66,6 @@ const Filter = ({
         const { name, value } = e.target;
         // set filter
         setFilter({ ...filter, [name]: value });
-
         // add query
         addQuery(name, value, location, history);
     };
