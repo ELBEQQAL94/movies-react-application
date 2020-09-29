@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 // Prop Types
 import PropTypes from 'prop-types';
 
 // SORT MOVIES FROM SERVER
-import sortMovies from '../../services/sortMovies';
+import filterMoviesService from '../../services/filterMovies';
 
 // utils
-import { setYears, convertParamsToValidUrl } from '../../utils';
+import { setYears, addQuery } from '../../utils';
 
 // Components
 import Collapse from '../collapse/Collapse';
@@ -24,15 +24,10 @@ const Filter = ({
 }) => {
 
     let history = useHistory();
-
-    // get params from local storage 
-    const getParamsFromLocalStorage = JSON.parse(localStorage.getItem('params')) || {};
-    
-    // get filter from local storage
-    const getSortByFromLocalStorage = localStorage.getItem('sort_by') || '';
+    let location = useLocation();
 
     // Sort by
-    const [sortBy, setSortBy] = useState(getSortByFromLocalStorage);
+    const [sortBy, setSortBy] = useState('');
 
     // filter by language
     const [selectedLang, setSelectedLang] = useState('');
@@ -41,21 +36,20 @@ const Filter = ({
     const [selectedYear, setSelectedYear] = useState('');
 
     // filter params (sorty_by, year, lang)
-    const [params, setParams] = useState(getParamsFromLocalStorage);
+    const [params, setParams] = useState('');
 
     // generate years from 1994
     const years = setYears();
 
     useEffect(() => {
         async function fetchData() {
+            // let search = location.search; 
+            // let searchParams = new URLSearchParams(search); 
 
-            // store params in local storage
-            localStorage.setItem("params", JSON.stringify(params));
+            // setParams(searchParams.toString());
 
-            // display query in current path
-            history.replace(`/movies?${convertParamsToValidUrl(params)}`);
+            const movies = await filterMoviesService(params);
 
-            const movies = await sortMovies(params);
             if(!movies) {
                 setLoading(false);
                 setError(true);
@@ -64,41 +58,40 @@ const Filter = ({
             setLoading(false);
         };
         fetchData();
-    }, [params, setFilterMovies, history, setLoading, setError]);
+    }, [params, setFilterMovies, setLoading, setError]);
+
+    console.log("Params: ", params);
 
     const onValueChange = (e) => {
         let sort_by = e.target.value;
 
-        // store ReleaseDate value in local storage
+        // change sort by value
         setSortBy(sort_by);
 
-        // set sort_by in query string
-        setParams(previousParams =>({
-            ...previousParams,
-            sort_by,
-        }));
-        // store selected option value in local storage
-        localStorage.setItem("sort_by", e.target.value);
+        // add query
+        addQuery('sort_by', sort_by, location, history);
     };
 
     // handle language if changed
     const onLangChange = (e) => {
         let language = e.target.value;
+
+        // change lang
         setSelectedLang(language);
-        setParams(previousParams =>({
-            ...previousParams,
-            language,
-        }));
+
+        // add query
+        addQuery('language', language, location, history);
     };
 
     // handle language if changed
     const onYearChange = (e) => {
         let year = e.target.value;
+
+        // change year
         setSelectedYear(year);
-        setParams(previousParams =>({
-            ...previousParams,
-            year,
-        }));
+
+        // add query
+        addQuery('year', year, location, history);
     };
 
     return (

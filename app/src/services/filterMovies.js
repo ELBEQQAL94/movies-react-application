@@ -7,10 +7,10 @@ import { GET_MOVIES } from './constants';
 // convert params to valid query url
 import {convertParamsToValidUrl} from '../utils';
 
-async function sortMovies(params) {
-    const queries = convertParamsToValidUrl(params);
+async function filterMoviesService(params) {
+    // const queries = convertParamsToValidUrl(params);
     try {
-      const response = await instance.get(`${GET_MOVIES}&${queries}`);
+      const response = await instance.get(`${GET_MOVIES}&${params}`);
       const movies = response.data.results;
       return movies;
     } catch (error) {
@@ -18,4 +18,4 @@ async function sortMovies(params) {
     };
 };
 
-export default sortMovies;
+export default filterMoviesService;
