@@ -30,12 +30,6 @@ const Filter = ({
     // Sort by
     const [sortBy, setSortBy] = useState('');
 
-    // filter by language
-    const [selectedLang, setSelectedLang] = useState('');
-
-    // filter by year
-    const [selectedYear, setSelectedYear] = useState('');
-
     // filter object
     const [filter, setFilter] = useState({
         language: '',
@@ -147,7 +141,7 @@ const Filter = ({
 
                     <div className="form-group" >
                         <select
-                            value={selectedLang}
+                            value={filter.language}
                             onChange={onFilterChange}
                             name="language" 
                             className="form-control">
@@ -161,7 +155,7 @@ const Filter = ({
 
                     <div className="form-group" >
                         <select 
-                            value={selectedYear}
+                            value={filter.year}
                             onChange={onFilterChange}
                             name="year"
                             className="form-control"
