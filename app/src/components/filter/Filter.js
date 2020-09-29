@@ -25,6 +25,7 @@ const Filter = ({
 
     let history = useHistory();
     let location = useLocation();
+    let searchParams = new URLSearchParams(location.search).toString(); 
 
     // Sort by
     const [sortBy, setSortBy] = useState('');
@@ -35,20 +36,13 @@ const Filter = ({
     // filter by year
     const [selectedYear, setSelectedYear] = useState('');
 
-    // filter params (sorty_by, year, lang)
-    const [params, setParams] = useState('');
-
     // generate years from 1994
     const years = setYears();
 
     useEffect(() => {
         async function fetchData() {
-            // let search = location.search; 
-            // let searchParams = new URLSearchParams(search); 
 
-            // setParams(searchParams.toString());
-
-            const movies = await filterMoviesService(params);
+            const movies = await filterMoviesService(searchParams);
 
             if(!movies) {
                 setLoading(false);
@@ -58,9 +52,7 @@ const Filter = ({
             setLoading(false);
         };
         fetchData();
-    }, [params, setFilterMovies, setLoading, setError]);
-
-    console.log("Params: ", params);
+    }, [searchParams, setFilterMovies, setLoading, setError]);
 
     const onValueChange = (e) => {
         let sort_by = e.target.value;
@@ -75,10 +67,8 @@ const Filter = ({
     // handle language if changed
     const onLangChange = (e) => {
         let language = e.target.value;
-
         // change lang
         setSelectedLang(language);
-
         // add query
         addQuery('language', language, location, history);
     };
@@ -86,10 +76,8 @@ const Filter = ({
     // handle language if changed
     const onYearChange = (e) => {
         let year = e.target.value;
-
         // change year
         setSelectedYear(year);
-
         // add query
         addQuery('year', year, location, history);
     };
