@@ -36,6 +36,12 @@ const Filter = ({
     // filter by year
     const [selectedYear, setSelectedYear] = useState('');
 
+    // filter object
+    const [filter, setFilter] = useState({
+        language: '',
+        year: '',
+    });
+
     // generate years from 1994
     const years = setYears();
 
@@ -52,6 +58,7 @@ const Filter = ({
         fetchData();
     }, [searchParams, setFilterMovies, setLoading, setError]);
 
+    // handle sort param
     const onSortChange = (e) => {
         let sort_by = e.target.value;
         // change sort by value
@@ -60,22 +67,14 @@ const Filter = ({
         addQuery('sort_by', sort_by, location, history);
     };
 
-    // handle language if changed
-    const onLangChange = (e) => {
-        let language = e.target.value;
-        // change lang
-        setSelectedLang(language);
-        // add query
-        addQuery('language', language, location, history);
-    };
+    // handle filter
+    const onFilterChange = (e) => {
+        const { name, value } = e.target;
+        // set filter
+        setFilter({ ...filter, [name]: value });
 
-    // handle language if changed
-    const onYearChange = (e) => {
-        let year = e.target.value;
-        // change year
-        setSelectedYear(year);
         // add query
-        addQuery('year', year, location, history);
+        addQuery(name, value, location, history);
     };
 
     return (
@@ -146,30 +145,33 @@ const Filter = ({
                         >Vote Average</label>
                     </div>
 
-                    <div 
-                        className="form-group" 
-                        value={selectedLang}
-                        onChange={onLangChange}>
-                        <select className="form-control">
-                            <option value=''>Choose language...</option>
-                            <option value='en'>en</option>
-                            <option value='es'>es</option>
-                            <option value='fr'>fr</option>
-                            <option value='ar'>ar</option>
+                    <div className="form-group" >
+                        <select
+                            value={selectedLang}
+                            onChange={onFilterChange}
+                            name="language" 
+                            className="form-control">
+                                <option value=''>Choose language...</option>
+                                <option value='en'>en</option>
+                                <option value='es'>es</option>
+                                <option value='fr'>fr</option>
+                                <option value='ar'>ar</option>
                         </select>
                     </div>
 
-                    <div 
-                        className="form-group" 
-                        value={selectedYear}
-                        onChange={onYearChange}>
-                        <select className="form-control">
-                            <option value=''>Choose year...</option>
-                            {
-                                years.map((year) => (
-                                    <option key={year} value={year}>{year}</option>
-                                ))
-                            }
+                    <div className="form-group" >
+                        <select 
+                            value={selectedYear}
+                            onChange={onFilterChange}
+                            name="year"
+                            className="form-control"
+                        >
+                                <option value=''>Choose year...</option>
+                                {
+                                    years.map((year) => (
+                                        <option key={year} value={year}>{year}</option>
+                                    ))
+                                }
                         </select>
                     </div>
                 </form>
