@@ -7,7 +7,7 @@ import {
     MOVIES_ROUTE,
     TV_SHOWS_ROUTE,
     NOT_FOUND_ROUTE,
-} from './constantsRoutes';
+} from './constants';
 
 // Pages
 import HomePageComponent from '../pages/home/HomePageComponent';
