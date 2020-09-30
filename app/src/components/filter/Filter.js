@@ -60,11 +60,11 @@ const Filter = ({
 
     // handle sort param
     const onSortChange = (e) => {
-        let sort_by = e.target.value;
+        let {name, value} = e.target;
         // change sort by value
-        setSortBy(sort_by);
+        setSortBy(value);
         // add query
-        addQuery('sort_by', sort_by, location, history);
+        addQuery(name, value, location, history);
     };
 
     // handle filter
@@ -89,7 +89,7 @@ const Filter = ({
                             type="radio" 
                             value="release_date.desc"
                             className="form-check-input"
-                            name="sort"
+                            name="sort_by"
                             checked={sortBy === "release_date.desc"}
                             onChange={onSortChange}
                         />
@@ -105,7 +105,7 @@ const Filter = ({
                             type="radio" 
                             className="form-check-input"
                             value="revenue.desc"
-                            name="sort"
+                            name="sort_by"
                             checked={sortBy === "revenue.desc"}
                             onChange={onSortChange}
                         />
@@ -121,7 +121,7 @@ const Filter = ({
                             type="radio" 
                             className="form-check-input"
                             value="popularity.desc"
-                            name="sort"
+                            name="sort_by"
                             checked={sortBy === "popularity.desc"}
                             onChange={onSortChange}
                         />
@@ -137,7 +137,7 @@ const Filter = ({
                             type="radio" 
                             className="form-check-input"
                             value="vote_average.desc"
-                            name="sort"
+                            name="sort_by"
                             checked={sortBy === "vote_average.desc"}
                             onChange={onSortChange}
                         />
