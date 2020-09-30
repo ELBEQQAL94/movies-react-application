@@ -1,10 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const Spinner = () => (
-  <div 
-    className="spinner-border text-secondary" 
-    role="status"
-  >
+  <div className="spinner-border text-secondary" role="status">
     <span className="sr-only">Loading...</span>
   </div>
 );

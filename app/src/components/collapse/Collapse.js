@@ -1,16 +1,23 @@
-import React from 'react';
+import React from "react";
 
-const Collapse = ({children}) => {
-    return (
-        <div className="mb-4">
-            <button className="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                Filter
-            </button>
-            <div className="collapse" id="collapseExample">
-                {children}
-            </div>
-        </div>
-    );
+const Collapse = ({ children }) => {
+  return (
+    <div className="mb-4">
+      <button
+        className="btn btn-primary"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapseExample"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        Filter
+      </button>
+      <div className="collapse" id="collapseExample">
+        {children}
+      </div>
+    </div>
+  );
 };
 
 export default Collapse;

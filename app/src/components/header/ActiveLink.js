@@ -1,10 +1,10 @@
-import React from 'react'; 
+import React from "react";
 
 // react router
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch } from "react-router-dom";
 
 // prop types
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const CustomeLink = ({ label, to, activeOnlyWhenExact }) => {
   const match = useRouteMatch({
@@ -13,10 +13,7 @@ const CustomeLink = ({ label, to, activeOnlyWhenExact }) => {
   });
 
   return (
-    <Link
-      className={`nav-link ${match ? 'active__link' : ''}`}
-      to={to}
-    >
+    <Link className={`nav-link ${match ? "active__link" : ""}`} to={to}>
       {label}
     </Link>
   );

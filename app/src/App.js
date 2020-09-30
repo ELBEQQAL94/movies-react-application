@@ -3,8 +3,8 @@ import React from "react";
 // react router
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 
-// routes 
-import { APP_ROUTES } from './routes/routes';
+// routes
+import { APP_ROUTES } from "./routes/routes";
 
 // App Route
 import AppRoute from "./AppRoute";

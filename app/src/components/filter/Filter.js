@@ -1,164 +1,162 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from "react-router-dom";
 
 // Prop Types
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // utils
-import { setYears, addQuery } from '../../utils';
+import { setYears, addQuery } from "../../utils";
 
 // Components
-import Collapse from '../collapse/Collapse';
+import Collapse from "../collapse/Collapse";
 
 // Style
-import './Filter.css';
+import "./Filter.css";
 
-const Filter = ({ 
-    setCurrentPage,
-}) => {
+const Filter = ({ setCurrentPage }) => {
+  let history = useHistory();
+  let location = useLocation();
+  let searchParams = new URLSearchParams(location.search);
 
-    let history = useHistory();
-    let location = useLocation();
-    let searchParams = new URLSearchParams(location.search); 
+  // Sort by
+  const [sortBy, setSortBy] = useState(searchParams.get("sort_by") || "");
 
-    // Sort by
-    const [sortBy, setSortBy] = useState(searchParams.get('sort_by') || '');
+  // filter object
+  const [filter, setFilter] = useState({
+    language: "",
+    year: "",
+  });
 
-    // filter object
-    const [filter, setFilter] = useState({
-        language: '',
-        year: '',
-    });
+  // generate years from 1994
+  const years = setYears();
 
-    // generate years from 1994
-    const years = setYears();
+  // handle sort param
+  const onSortChange = (e) => {
+    const { name, value } = e.target;
+    // change sort by value
+    setSortBy(value);
+    // add query
+    addQuery(name, value, location, history);
+  };
 
-    // handle sort param
-    const onSortChange = (e) => {
-        const {name, value} = e.target;
-        // change sort by value
-        setSortBy(value);
-        // add query
-        addQuery(name, value, location, history);
-    };
+  // handle filter
+  const onFilterChange = (e) => {
+    const { name, value } = e.target;
+    // set filter
+    setFilter({ ...filter, [name]: value });
+    // reset page only if year change
+    if (name === "year") setCurrentPage(1);
+    // add query
+    addQuery(name, value, location, history);
+  };
 
-    // handle filter
-    const onFilterChange = (e) => {
-        const { name, value } = e.target;
-        // set filter
-        setFilter({ ...filter, [name]: value });
-        // reset page only if year change
-        if(name === 'year') setCurrentPage(1);
-        // add query
-        addQuery(name, value, location, history);
-    };
+  return (
+    <Collapse>
+      <div className="filter">
+        <form>
+          {/* release_date.desc */}
+          <div className="form-group form-check">
+            <input
+              id="release_date"
+              type="radio"
+              value="release_date.desc"
+              className="form-check-input"
+              name="sort_by"
+              checked={sortBy === "release_date.desc"}
+              onChange={onSortChange}
+            />
+            <label className="form-check-label" htmlFor="release_date">
+              Release Date
+            </label>
+          </div>
 
-    return (
-        <Collapse>
-            <div className='filter'>
-                <form>
-                    {/* release_date.desc */}
-                    <div className="form-group form-check">
-                        <input 
-                            id="release_date"
-                            type="radio" 
-                            value="release_date.desc"
-                            className="form-check-input"
-                            name="sort_by"
-                            checked={sortBy === "release_date.desc"}
-                            onChange={onSortChange}
-                        />
-                        <label 
-                            className="form-check-label" htmlFor="release_date"
-                        >Release Date</label>
-                    </div>
+          {/* revenue.desc */}
+          <div className="form-group form-check">
+            <input
+              id="revenue"
+              type="radio"
+              className="form-check-input"
+              value="revenue.desc"
+              name="sort_by"
+              checked={sortBy === "revenue.desc"}
+              onChange={onSortChange}
+            />
+            <label className="form-check-label" htmlFor="revenue">
+              Revenue
+            </label>
+          </div>
 
-                    {/* revenue.desc */}
-                    <div className="form-group form-check">
-                        <input 
-                            id="revenue"
-                            type="radio" 
-                            className="form-check-input"
-                            value="revenue.desc"
-                            name="sort_by"
-                            checked={sortBy === "revenue.desc"}
-                            onChange={onSortChange}
-                        />
-                        <label 
-                            className="form-check-label" htmlFor="revenue"
-                        >Revenue</label>
-                    </div>
+          {/* popularity.desc */}
+          <div className="form-group form-check">
+            <input
+              id="popularity"
+              type="radio"
+              className="form-check-input"
+              value="popularity.desc"
+              name="sort_by"
+              checked={sortBy === "popularity.desc"}
+              onChange={onSortChange}
+            />
+            <label className="form-check-label" htmlFor="popularity">
+              Popularity
+            </label>
+          </div>
 
-                    {/* popularity.desc */}
-                    <div className="form-group form-check">
-                        <input 
-                            id="popularity"
-                            type="radio" 
-                            className="form-check-input"
-                            value="popularity.desc"
-                            name="sort_by"
-                            checked={sortBy === "popularity.desc"}
-                            onChange={onSortChange}
-                        />
-                        <label 
-                            className="form-check-label" htmlFor="popularity"
-                        >Popularity</label>
-                    </div>
+          {/* vote_average.desc */}
+          <div className="form-group form-check">
+            <input
+              id="vote_average"
+              type="radio"
+              className="form-check-input"
+              value="vote_average.desc"
+              name="sort_by"
+              checked={sortBy === "vote_average.desc"}
+              onChange={onSortChange}
+            />
+            <label className="form-check-label" htmlFor="vote_average">
+              Vote Average
+            </label>
+          </div>
 
-                    {/* vote_average.desc */}
-                    <div className="form-group form-check">
-                        <input 
-                            id="vote_average"
-                            type="radio" 
-                            className="form-check-input"
-                            value="vote_average.desc"
-                            name="sort_by"
-                            checked={sortBy === "vote_average.desc"}
-                            onChange={onSortChange}
-                        />
-                        <label 
-                            className="form-check-label" htmlFor="vote_average"
-                        >Vote Average</label>
-                    </div>
+          <div className="form-group">
+            <select
+              value={filter.language}
+              onChange={onFilterChange}
+              name="language"
+              className="form-control"
+            >
+              <option value="">Choose language...</option>
+              <option value="en">en</option>
+              <option value="es">es</option>
+              <option value="fr">fr</option>
+              <option value="ar">ar</option>
+            </select>
+          </div>
 
-                    <div className="form-group" >
-                        <select
-                            value={filter.language}
-                            onChange={onFilterChange}
-                            name="language" 
-                            className="form-control">
-                                <option value=''>Choose language...</option>
-                                <option value='en'>en</option>
-                                <option value='es'>es</option>
-                                <option value='fr'>fr</option>
-                                <option value='ar'>ar</option>
-                        </select>
-                    </div>
-
-                    <div className="form-group" >
-                        <select 
-                            value={filter.year}
-                            onChange={onFilterChange}
-                            name="year"
-                            className="form-control"
-                        >
-                                <option value=''>Choose year...</option>
-                                {
-                                    years.map((year) => (
-                                        <option key={year} value={year}>{year}</option>
-                                    ))
-                                }
-                        </select>
-                    </div>
-                </form>
-            </div>
-        </Collapse>
-    );
+          <div className="form-group">
+            <select
+              value={filter.year}
+              onChange={onFilterChange}
+              name="year"
+              className="form-control"
+            >
+              <option value="">Choose year...</option>
+              {years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+          </div>
+        </form>
+      </div>
+    </Collapse>
+  );
 };
 
 Filter.propTypes = {
-    setCurrentPage: PropTypes.func.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
 };
 
 export default Filter;

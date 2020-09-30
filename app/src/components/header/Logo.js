@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 // react router
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // Style
-import './Logo.css';
+import "./Logo.css";
 
 const Logo = () => (
   <div className="logo__container">

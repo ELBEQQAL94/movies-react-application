@@ -1,16 +1,15 @@
-import React from 'react';
+import React from "react";
 
 // Components
-import Logo from './Logo';
-import NavbarToggler from './NavbarToggler';
-import NavbarLinks from './NavbarLinks';
+import Logo from "./Logo";
+import NavbarToggler from "./NavbarToggler";
+import NavbarLinks from "./NavbarLinks";
 
 // Style
-import './Navbar.css';
+import "./Navbar.css";
 
 const Navbar = () => (
   <nav className="navbar navbar-expand-lg">
-
     {/* Logo */}
     <Logo />
 
@@ -19,7 +18,6 @@ const Navbar = () => (
 
     {/* Navbar Links */}
     <NavbarLinks />
-
   </nav>
 );
 

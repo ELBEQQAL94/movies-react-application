@@ -1,24 +1,24 @@
-import React from 'react';
+import React from "react";
 
 // Prop Types
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // HEADER
-import Header from '../header/Header';
+import Header from "../header/Header";
 
 // FOOTER
-import Footer from '../footer/Footer';
+import Footer from "../footer/Footer";
 
-const MainLayout = ({children}) => (
-    <>
-        <Header />
-        {children}
-        <Footer />
-    </>
+const MainLayout = ({ children }) => (
+  <>
+    <Header />
+    {children}
+    <Footer />
+  </>
 );
 
 MainLayout.propTypes = {
-    children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default MainLayout;
