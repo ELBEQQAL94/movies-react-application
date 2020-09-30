@@ -1,0 +1,7 @@
+.pagination__container {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin: 2em 0;
+}

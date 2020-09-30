@@ -1,43 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-// FETCH MOVIES FROM SERVER
-import fetchMovies from '../../services/movies';
+import { useLocation } from 'react-router-dom';
 
 // Components
 import Content from '../../components/content/Content';
 import Spinner from '../../components/elements/Spinner';
 import Filter from '../../components/filter/Filter';
+import PaginationComponent from '../../components/pagination/PaginationComponent';
 
 // Style
 import './MoviesPageComponent.css';
 
 const MoviesPageComponent = () => {
+
+    let location = useLocation();
+    let searchParams = new URLSearchParams(location.search); 
+
     const [movies, setMovies] = useState([]);
-    const [filterMovies, setFilterMovies] = useState([]);
+    const [totalPages, setTotalPages] = useState(0);
+    const [currentPage, setCurrentPage] = useState(+searchParams.get('page') || 1);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-
-    useEffect(() => {
-        async function fetchData() {
-            const movies = await fetchMovies();
-            if(!movies) {
-                setLoading(false);
-                setError(true);
-            }
-            setMovies(movies);
-            setLoading(false);
-        };
-        fetchData();
-    }, []);
-
 
     return(
         <main className="main">
             <div className="container">
                 <Filter 
-                    setFilterMovies={setFilterMovies} 
+                    setMovies={setMovies} 
                     setLoading={setLoading} 
                     setError={setError}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    setTotalPages={setTotalPages}
                 />
                 {error && <p>Connection failed!</p>}
                 {
@@ -46,12 +40,22 @@ const MoviesPageComponent = () => {
                         <div className="spinner__container">
                             <Spinner />
                         </div>
-                    ) : filterMovies.length > 0 ? (
-                        <Content content={filterMovies} />          
-                    ) : (
-                        <Content content={movies} />          
+                    ) : movies.length > 0 && (
+                        <>
+                            <PaginationComponent 
+                                currentPage={currentPage} 
+                                setCurrentPage={setCurrentPage}
+                                totalPages={totalPages}
+                            />
+                            <Content content={movies} />
+                            <PaginationComponent 
+                                currentPage={currentPage} 
+                                setCurrentPage={setCurrentPage}
+                                totalPages={totalPages}
+                            />          
+                        </>
                     )
-                }
+                }       
             </div>
         </main>
     );

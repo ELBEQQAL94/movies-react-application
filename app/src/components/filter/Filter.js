@@ -6,7 +6,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // SORT MOVIES FROM SERVER
-import filterMoviesService from '../../services/filterMovies';
+import movies from '../../services/movies';
 
 // utils
 import { setYears, addQuery } from '../../utils';
@@ -18,7 +18,10 @@ import Collapse from '../collapse/Collapse';
 import './Filter.css';
 
 const Filter = ({
-    setFilterMovies, 
+    setMovies,
+    currentPage, 
+    setCurrentPage,
+    setTotalPages,
     setLoading, 
     setError
 }) => {
@@ -41,16 +44,19 @@ const Filter = ({
 
     useEffect(() => {
         async function fetchData() {
-            const movies = await filterMoviesService(searchParams);
-            if(!movies) {
+            const {results, total_pages} = await movies(searchParams);
+            if(!results) {
                 setLoading(false);
                 setError(true);
-            }
-            setFilterMovies(movies);
-            setLoading(false);
+            } else  {
+                addQuery('page', currentPage, location, history);
+                setTotalPages(total_pages);
+                setMovies(results);
+                setLoading(false);
+            };
         };
         fetchData();
-    }, [searchParams, setFilterMovies, setLoading, setError]);
+    }, [searchParams, currentPage, setTotalPages, setMovies, setLoading, setError]);
 
     // handle sort param
     const onSortChange = (e) => {
@@ -66,6 +72,8 @@ const Filter = ({
         const { name, value } = e.target;
         // set filter
         setFilter({ ...filter, [name]: value });
+        // reset page only if year change
+        if(name === 'year') setCurrentPage(1);
         // add query
         addQuery(name, value, location, history);
     };
@@ -174,9 +182,12 @@ const Filter = ({
 };
 
 Filter.propTypes = {
-    setFilterMovies: PropTypes.func.isRequired,
+    setMovies: PropTypes.func.isRequired,
     setLoading: PropTypes.func.isRequired,
     setError: PropTypes.func.isRequired,
+    setTotalPages: PropTypes.func.isRequired,
+    currentPage: PropTypes.number.isRequired,
+    setCurrentPage: PropTypes.func.isRequired,
 };
 
 export default Filter;

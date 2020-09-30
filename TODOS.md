@@ -19,13 +19,11 @@
 * [x] Display Tv Shows
 * [x] Add header
 * [x] Add footer
-* [ ] Check console log
 * [x] Check responsive
 * [x] Display error if fetching data failed
 * [x] Display loading
 * [x] Add axios
 * [x] Add bootstrap
-* [ ] Add pagination
 * [x] Add image loading
 * [ ] Add Page Not Found 404!
 * [x] Create services for movies and tv shows
@@ -52,6 +50,15 @@
 * [x] Add one function handle filters
 * [x] Test url in other browser
 * ref: https://stackoverflow.com/questions/40161516/how-do-you-programmatically-update-query-params-in-react-router
+* Question 1: Keep state of sorting
+* Question 2: I think call addQuery more than once it's more clear than call it once on useEffect
+* Question 3: I don't know if i need removeQuery function
+* Question 4: Pagination query should be on filter component
+* [x] Add pagination
+    * [x] Page return to 1 after reload page
+    * [x] Total results return to default
+    * [x] Design pagination component
+
 
 ## API's
 ----
