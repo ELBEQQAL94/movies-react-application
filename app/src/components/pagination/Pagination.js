@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import { addQuery } from '../../utils';
 
 // Style
-import './PaginationComponent.css';
+import './Pagination.css';
 
 const PaginationComponent = ({currentPage, setCurrentPage, totalPages}) => {
 

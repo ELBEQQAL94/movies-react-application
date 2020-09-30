@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import Content from '../../components/content/Content';
 import Spinner from '../../components/elements/Spinner';
 import Filter from '../../components/filter/Filter';
-import PaginationComponent from '../../components/pagination/PaginationComponent';
+import Pagination from '../../components/pagination/Pagination';
 
 // Style
 import './MoviesPageComponent.css';
@@ -42,13 +42,13 @@ const MoviesPageComponent = () => {
                         </div>
                     ) : movies.length > 0 && (
                         <>
-                            <PaginationComponent 
+                            <Pagination 
                                 currentPage={currentPage} 
                                 setCurrentPage={setCurrentPage}
                                 totalPages={totalPages}
                             />
                             <Content content={movies} />
-                            <PaginationComponent 
+                            <Pagination 
                                 currentPage={currentPage} 
                                 setCurrentPage={setCurrentPage}
                                 totalPages={totalPages}
