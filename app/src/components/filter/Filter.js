@@ -1,12 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 import { useHistory, useLocation } from 'react-router-dom';
 
 // Prop Types
 import PropTypes from 'prop-types';
-
-// SORT MOVIES FROM SERVER
-import movies from '../../services/movies';
 
 // utils
 import { setYears, addQuery } from '../../utils';
@@ -17,21 +14,16 @@ import Collapse from '../collapse/Collapse';
 // Style
 import './Filter.css';
 
-const Filter = ({
-    setMovies,
-    currentPage, 
+const Filter = ({ 
     setCurrentPage,
-    setTotalPages,
-    setLoading, 
-    setError
 }) => {
 
     let history = useHistory();
     let location = useLocation();
-    let searchParams = new URLSearchParams(location.search).toString(); 
+    let searchParams = new URLSearchParams(location.search); 
 
     // Sort by
-    const [sortBy, setSortBy] = useState('');
+    const [sortBy, setSortBy] = useState(searchParams.get('sort_by') || '');
 
     // filter object
     const [filter, setFilter] = useState({
@@ -42,25 +34,9 @@ const Filter = ({
     // generate years from 1994
     const years = setYears();
 
-    useEffect(() => {
-        async function fetchData() {
-            const {results, total_pages} = await movies(searchParams);
-            if(!results) {
-                setLoading(false);
-                setError(true);
-            } else  {
-                addQuery('page', currentPage, location, history);
-                setTotalPages(total_pages);
-                setMovies(results);
-                setLoading(false);
-            };
-        };
-        fetchData();
-    }, [searchParams, currentPage, setTotalPages, setMovies, setLoading, setError]);
-
     // handle sort param
     const onSortChange = (e) => {
-        let {name, value} = e.target;
+        const {name, value} = e.target;
         // change sort by value
         setSortBy(value);
         // add query
@@ -182,11 +158,6 @@ const Filter = ({
 };
 
 Filter.propTypes = {
-    setMovies: PropTypes.func.isRequired,
-    setLoading: PropTypes.func.isRequired,
-    setError: PropTypes.func.isRequired,
-    setTotalPages: PropTypes.func.isRequired,
-    currentPage: PropTypes.number.isRequired,
     setCurrentPage: PropTypes.func.isRequired,
 };
 
