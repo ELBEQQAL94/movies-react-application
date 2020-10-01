@@ -35,7 +35,7 @@ const TvShowsPageComponent = () => {
           setLoading(false);
         }
       })
-      .catch((error) => {
+      .catch((err) => {
         setLoading(false);
         setError(true);
       });
