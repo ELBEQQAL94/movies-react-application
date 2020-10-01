@@ -12,9 +12,6 @@ import Filter from "../../components/filter/Filter";
 import Pagination from "../../components/pagination/Pagination";
 import Warning from "../../components/warning/Warning";
 
-// Style
-import "./MoviesPageComponent.css";
-
 const MoviesPageComponent = () => {
   let location = useLocation();
   let searchParams = new URLSearchParams(location.search);
@@ -58,11 +55,9 @@ const MoviesPageComponent = () => {
     <main className="main">
       <div className="container">
         <Filter setCurrentPage={setCurrentPage} />
-        {error && <Warning message="Connection failed!" />}
+        <Warning error={error} message="Connection failed!" />
         {loading ? (
-          <div className="spinner__container">
-            <Spinner />
-          </div>
+          <Spinner />
         ) : (
           movies && movies.length > 0 ? (
             <>
