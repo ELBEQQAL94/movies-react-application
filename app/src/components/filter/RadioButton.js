@@ -2,7 +2,6 @@ import React, {useState} from "react";
 
 import { useLocation, useHistory } from "react-router-dom";
 
-
 // Prop Types
 import PropTypes from "prop-types";
 

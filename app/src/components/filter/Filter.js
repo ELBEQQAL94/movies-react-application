@@ -11,6 +11,7 @@ import { setYears, addQuery } from "../../utils";
 // Components
 import Collapse from "../collapse/Collapse";
 import RadioButton from "./RadioButton";
+import SelectOption from "./SelectOption";
 
 // Style
 import "./Filter.css";
@@ -24,6 +25,9 @@ const Filter = ({ setCurrentPage }) => {
     language: "",
     year: "",
   });
+
+  // languages
+  const options = ["en", "es", "fr", "ar"];
 
   // generate years from 1994
   const years = setYears();
@@ -44,47 +48,30 @@ const Filter = ({ setCurrentPage }) => {
       <div className="filter">
         <form>
           {/* release_date.desc */}
-          <RadioButton value="release_date.desc" title="Release Date"/>
+          <RadioButton value="release_date.desc" title="Release Date" />
 
           {/* revenue.desc */}
-          <RadioButton value="revenue.desc" title="Revenue"/>
+          <RadioButton value="revenue.desc" title="Revenue" />
 
           {/* popularity.desc */}
-          <RadioButton value="popularity.desc" title="Popularity"/>
+          <RadioButton value="popularity.desc" title="Popularity" />
 
           {/* vote_average.desc */}
-          <RadioButton value="vote_average.desc" title="Vote Average"/>
+          <RadioButton value="vote_average.desc" title="Vote Average" />
 
-          <div className="form-group">
-            <select
-              value={filter.language}
-              onChange={onFilterChange}
-              name="language"
-              className="form-control"
-            >
-              <option value="">Choose language...</option>
-              <option value="en">en</option>
-              <option value="es">es</option>
-              <option value="fr">fr</option>
-              <option value="ar">ar</option>
-            </select>
-          </div>
+          <SelectOption
+            filter={filter.language}
+            name="language"
+            onFilterChange={onFilterChange}
+            options={options}
+          />
 
-          <div className="form-group">
-            <select
-              value={filter.year}
-              onChange={onFilterChange}
-              name="year"
-              className="form-control"
-            >
-              <option value="">Choose year...</option>
-              {years.map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))}
-            </select>
-          </div>
+          <SelectOption
+            filter={filter.year}
+            name="year"
+            onFilterChange={onFilterChange}
+            options={years}
+          />
         </form>
       </div>
     </Collapse>
