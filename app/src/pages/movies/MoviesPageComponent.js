@@ -37,9 +37,9 @@ const MoviesPageComponent = () => {
           setLoading(false);
         }
       })
-      .catch((error) => {
-        setLoading(false);
-        setError(true);
+      .catch((err) => {
+          setLoading(false);
+          setError(true);
       });
 
     return () => {
@@ -63,7 +63,7 @@ const MoviesPageComponent = () => {
             <Spinner />
           </div>
         ) : (
-          movies.length > 0 && (
+          movies && movies.length > 0 ? (
             <>
               <Pagination
                 currentPage={currentPage}
@@ -77,7 +77,7 @@ const MoviesPageComponent = () => {
                 totalPages={totalPages}
               />
             </>
-          )
+          ) : ( <h2> Results Not Found!</h2>)
         )}
       </div>
     </main>

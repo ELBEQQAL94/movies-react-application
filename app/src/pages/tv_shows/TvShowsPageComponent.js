@@ -62,7 +62,7 @@ const TvShowsPageComponent = () => {
             <Spinner />
           </div>
         ) : (
-          tvShows.length > 0 && (
+          tvShows && tvShows.length > 0 ? (
             <>
               <Pagination
                 currentPage={currentPage}
@@ -76,7 +76,7 @@ const TvShowsPageComponent = () => {
                 totalPages={totalPages}
               />
             </>
-          )
+          ) : (<h2>Results Not Found!</h2>)
         )}
       </div>
     </main>
