@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { useLocation } from "react-router-dom";
 
-// SORT MOVIES FROM SERVER
+// FETCH TVSHOWS FROM SERVER
 import tvShowsService from "../../services/tvShows";
 
 // Components
@@ -41,6 +41,7 @@ const TvShowsPageComponent = () => {
         setLoading(false);
         setError(true);
       });
+      
     return () => {
       isMounted = false;
     };

@@ -38,8 +38,8 @@ const MoviesPageComponent = () => {
         }
       })
       .catch((err) => {
-          setLoading(false);
-          setError(true);
+        setLoading(false);
+        setError(true);
       });
 
     return () => {
@@ -52,8 +52,6 @@ const MoviesPageComponent = () => {
     setLoading,
     setError,
   ]);
-
-  console.log("SearchParams: ", searchParams);
 
   return (
     <main className="main">

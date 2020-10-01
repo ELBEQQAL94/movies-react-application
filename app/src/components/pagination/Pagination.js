@@ -24,7 +24,6 @@ const PaginationComponent = ({ currentPage, setCurrentPage, totalPages }) => {
 
   const handlePage = (event, value) => {
     setCurrentPage(value);
-    addQuery("page", value, location, history);
   };
 
   return (
