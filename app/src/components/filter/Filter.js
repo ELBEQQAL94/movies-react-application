@@ -10,6 +10,7 @@ import { setYears, addQuery } from "../../utils";
 
 // Components
 import Collapse from "../collapse/Collapse";
+import RadioButton from "./RadioButton";
 
 // Style
 import "./Filter.css";
@@ -17,10 +18,6 @@ import "./Filter.css";
 const Filter = ({ setCurrentPage }) => {
   let history = useHistory();
   let location = useLocation();
-  let searchParams = new URLSearchParams(location.search);
-
-  // Sort by
-  const [sortBy, setSortBy] = useState(searchParams.get("sort_by") || "");
 
   // filter object
   const [filter, setFilter] = useState({
@@ -30,15 +27,6 @@ const Filter = ({ setCurrentPage }) => {
 
   // generate years from 1994
   const years = setYears();
-
-  // handle sort param
-  const onSortChange = (e) => {
-    const { name, value } = e.target;
-    // change sort by value
-    setSortBy(value);
-    // add query
-    addQuery(name, value, location, history);
-  };
 
   // handle filter
   const onFilterChange = (e) => {
@@ -56,68 +44,16 @@ const Filter = ({ setCurrentPage }) => {
       <div className="filter">
         <form>
           {/* release_date.desc */}
-          <div className="form-group form-check">
-            <input
-              id="release_date"
-              type="radio"
-              value="release_date.desc"
-              className="form-check-input"
-              name="sort_by"
-              checked={sortBy === "release_date.desc"}
-              onChange={onSortChange}
-            />
-            <label className="form-check-label" htmlFor="release_date">
-              Release Date
-            </label>
-          </div>
+          <RadioButton value="release_date.desc" title="Release Date"/>
 
           {/* revenue.desc */}
-          <div className="form-group form-check">
-            <input
-              id="revenue"
-              type="radio"
-              className="form-check-input"
-              value="revenue.desc"
-              name="sort_by"
-              checked={sortBy === "revenue.desc"}
-              onChange={onSortChange}
-            />
-            <label className="form-check-label" htmlFor="revenue">
-              Revenue
-            </label>
-          </div>
+          <RadioButton value="revenue.desc" title="Revenue"/>
 
           {/* popularity.desc */}
-          <div className="form-group form-check">
-            <input
-              id="popularity"
-              type="radio"
-              className="form-check-input"
-              value="popularity.desc"
-              name="sort_by"
-              checked={sortBy === "popularity.desc"}
-              onChange={onSortChange}
-            />
-            <label className="form-check-label" htmlFor="popularity">
-              Popularity
-            </label>
-          </div>
+          <RadioButton value="popularity.desc" title="Popularity"/>
 
           {/* vote_average.desc */}
-          <div className="form-group form-check">
-            <input
-              id="vote_average"
-              type="radio"
-              className="form-check-input"
-              value="vote_average.desc"
-              name="sort_by"
-              checked={sortBy === "vote_average.desc"}
-              onChange={onSortChange}
-            />
-            <label className="form-check-label" htmlFor="vote_average">
-              Vote Average
-            </label>
-          </div>
+          <RadioButton value="vote_average.desc" title="Vote Average"/>
 
           <div className="form-group">
             <select
