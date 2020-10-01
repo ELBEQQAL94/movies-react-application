@@ -10,6 +10,7 @@ import Content from "../../components/content/Content";
 import Spinner from "../../components/elements/Spinner";
 import Filter from "../../components/filter/Filter";
 import Pagination from "../../components/pagination/Pagination";
+import Warning from "../../components/warning/Warning";
 
 // Style
 import "./MoviesPageComponent.css";
@@ -57,7 +58,7 @@ const MoviesPageComponent = () => {
     <main className="main">
       <div className="container">
         <Filter setCurrentPage={setCurrentPage} />
-        {error && <p>Connection failed!</p>}
+        {error && <Warning message="Connection failed!" />}
         {loading ? (
           <div className="spinner__container">
             <Spinner />
@@ -77,7 +78,7 @@ const MoviesPageComponent = () => {
                 totalPages={totalPages}
               />
             </>
-          ) : ( <h2> Results Not Found!</h2>)
+          ) : (<Warning message="Results Not Found!" />)
         )}
       </div>
     </main>
