@@ -45,7 +45,7 @@ const TvShowsPageComponent = () => {
       isMounted = false;
     };
   }, [
-    searchParams,
+    location,
     setTotalPages,
     setTvShows,
     setLoading,

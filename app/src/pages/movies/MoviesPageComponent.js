@@ -46,12 +46,14 @@ const MoviesPageComponent = () => {
       isMounted = false;
     };
   }, [
-    searchParams,
+    location,
     setTotalPages,
     setMovies,
     setLoading,
     setError,
   ]);
+
+  console.log("SearchParams: ", searchParams);
 
   return (
     <main className="main">
