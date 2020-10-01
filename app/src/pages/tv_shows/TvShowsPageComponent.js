@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 // SORT MOVIES FROM SERVER
 import tvShowsService from "../../services/tvShows";
-
-// add query
-import { addQuery } from "../../utils";
 
 // Components
 import Content from "../../components/content/Content";
@@ -18,7 +15,6 @@ import Pagination from "../../components/pagination/Pagination";
 import "./TvShowsPageComponent.css";
 
 const TvShowsPageComponent = () => {
-  let history = useHistory();
   let location = useLocation();
   let searchParams = new URLSearchParams(location.search);
 
@@ -36,7 +32,6 @@ const TvShowsPageComponent = () => {
     tvShowsService(params)
       .then(({ results, total_pages }) => {
         if (isMounted) {
-          addQuery("page", currentPage, location, history);
           setTotalPages(total_pages);
           setTvShows(results);
           setLoading(false);
@@ -51,7 +46,6 @@ const TvShowsPageComponent = () => {
     };
   }, [
     searchParams,
-    currentPage,
     setTotalPages,
     setTvShows,
     setLoading,

@@ -56,8 +56,8 @@
     * [x] Total results return to default
     * [x] Design pagination component
 * [x] remove fetch data from MoviesPage and tvShows
-* [ ] remove addQuery from MoviesPage and TvShowsPage
-* [ ] Add default page on Pagination Component
+* [x] remove addQuery from MoviesPage and TvShowsPage
+* [x] Add default page on Pagination Component
 
 
 ## API's

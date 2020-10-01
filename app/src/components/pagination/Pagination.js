@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import { useHistory, useLocation } from "react-router-dom";
 
@@ -17,6 +17,10 @@ import "./Pagination.css";
 const PaginationComponent = ({ currentPage, setCurrentPage, totalPages }) => {
   let history = useHistory();
   let location = useLocation();
+
+  useEffect(() => 
+    addQuery("page", currentPage, location, history)
+  , [currentPage]);
 
   const handlePage = (event, value) => {
     setCurrentPage(value);
