@@ -13,8 +13,8 @@ const SelectOption = ({ filter, name, onFilterChange, options }) => {
         className="form-control"
       >
         <option value="">Choose {name}...</option>
-        {options?.map((option, i) => (
-          <option key={i} value={option}>
+        {options?.map((option) => (
+          <option key={option} value={option}>
             {option}
           </option>
         ))}
