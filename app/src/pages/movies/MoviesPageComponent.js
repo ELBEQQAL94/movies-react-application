@@ -32,23 +32,21 @@ const MoviesPageComponent = () => {
 
   useEffect(() => {
     let isMounted = true;
-    async function fetchData() {
-      const { results, total_pages } = await moviesService(
-        searchParams.toString()
-      );
-      if (!results) {
-        setLoading(false);
-        setError(true);
-      } else {
+    const params = searchParams.toString();
+    moviesService(params)
+      .then(({ results, total_pages }) => {
         if (isMounted) {
           addQuery("page", currentPage, location, history);
           setTotalPages(total_pages);
           setMovies(results);
           setLoading(false);
         }
-      }
-    }
-    fetchData();
+      })
+      .catch((error) => {
+        setLoading(false);
+        setError(true);
+      });
+
     return () => {
       isMounted = false;
     };

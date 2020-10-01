@@ -32,23 +32,20 @@ const TvShowsPageComponent = () => {
 
   useEffect(() => {
     let isMounted = true;
-    async function fetchData() {
-      const { results, total_pages } = await tvShowsService(
-        searchParams.toString()
-      );
-      if (!results) {
-        setLoading(false);
-        setError(true);
-      } else {
+    const params = searchParams.toString();
+    tvShowsService(params)
+      .then(({ results, total_pages }) => {
         if (isMounted) {
           addQuery("page", currentPage, location, history);
           setTotalPages(total_pages);
           setTvShows(results);
           setLoading(false);
         }
-      }
-    }
-    fetchData();
+      })
+      .catch((error) => {
+        setLoading(false);
+        setError(true);
+      });
     return () => {
       isMounted = false;
     };
