@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import { useLocation } from "react-router-dom";
 
+// Change title of the document
+import { Helmet } from "react-helmet";
+
 // FETCH TVSHOWS FROM SERVER
 import tvShowsService from "../../services/tvShows";
 
@@ -24,6 +27,9 @@ const TvShowsPageComponent = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const TITLE = "Tv Shows";
+
+
   useEffect(() => {
     let isMounted = true;
     const params = searchParams.toString();
@@ -43,37 +49,34 @@ const TvShowsPageComponent = () => {
     return () => {
       isMounted = false;
     };
-  }, [
-    location,
-    setTotalPages,
-    setTvShows,
-    setLoading,
-    setError,
-  ]);
+  }, [location, setTotalPages, setTvShows, setLoading, setError]);
 
   return (
     <main className="main">
       <div className="container">
         <Filter setCurrentPage={setCurrentPage} />
         <Warning error={error} message="Connection failed!" />
+        <Helmet>
+          <title>{TITLE}</title>
+        </Helmet>
         {loading ? (
           <Spinner />
+        ) : tvShows && tvShows.length > 0 ? (
+          <>
+            <Pagination
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              totalPages={totalPages}
+            />
+            <Content content={tvShows} />
+            <Pagination
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              totalPages={totalPages}
+            />
+          </>
         ) : (
-          tvShows && tvShows.length > 0 ? (
-            <>
-              <Pagination
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                totalPages={totalPages}
-              />
-              <Content content={tvShows} />
-              <Pagination
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                totalPages={totalPages}
-              />
-            </>
-          ) : (<Warning message="Results Not Found!" />)
+          <Warning message="Results Not Found!" />
         )}
       </div>
     </main>

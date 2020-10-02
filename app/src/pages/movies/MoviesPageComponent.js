@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import { useLocation } from "react-router-dom";
 
+// Change title of the document
+import { Helmet } from "react-helmet";
+
 // SORT MOVIES FROM SERVER
 import moviesService from "../../services/movies";
 
@@ -24,6 +27,8 @@ const MoviesPageComponent = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const TITLE = "Movies";
+
   useEffect(() => {
     let isMounted = true;
     const params = searchParams.toString();
@@ -43,37 +48,34 @@ const MoviesPageComponent = () => {
     return () => {
       isMounted = false;
     };
-  }, [
-    location,
-    setTotalPages,
-    setMovies,
-    setLoading,
-    setError,
-  ]);
+  }, [location, setTotalPages, setMovies, setLoading, setError]);
 
   return (
     <main className="main">
       <div className="container">
         <Filter setCurrentPage={setCurrentPage} />
         <Warning error={error} message="Connection failed!" />
+        <Helmet>
+          <title>{TITLE}</title>
+        </Helmet>
         {loading ? (
           <Spinner />
+        ) : movies && movies.length > 0 ? (
+          <>
+            <Pagination
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              totalPages={totalPages}
+            />
+            <Content content={movies} />
+            <Pagination
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              totalPages={totalPages}
+            />
+          </>
         ) : (
-          movies && movies.length > 0 ? (
-            <>
-              <Pagination
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                totalPages={totalPages}
-              />
-              <Content content={movies} />
-              <Pagination
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                totalPages={totalPages}
-              />
-            </>
-          ) : (<Warning message="Results Not Found!" />)
+          <Warning message="Results Not Found!" />
         )}
       </div>
     </main>
