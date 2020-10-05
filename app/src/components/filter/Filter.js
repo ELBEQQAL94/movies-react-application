@@ -18,8 +18,8 @@ const Filter = ({ setCurrentPage }) => {
 
   // filter object
   const [filter, setFilter] = useState({
-    language: searchParams.get("language") || "",
-    year: searchParams.get("year") || "",
+    language: searchParams.get("language") || "en",
+    year: searchParams.get("year") || "2020",
   });
 
   // languages
@@ -33,7 +33,6 @@ const Filter = ({ setCurrentPage }) => {
     const { name, value } = e.target;
     // set filter
     setFilter({ ...filter, [name]: value });
-    // reset page only if year change
     if (name === "language"){
       // add query
       setQueryToUrl(name, value, location, history);
