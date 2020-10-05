@@ -59,8 +59,8 @@ const MoviesPageComponent = () => {
         <Collapse>
           <div className="filter__container">
             <form>
-              <SortFilter />
-              <Filter setCurrentPage={setCurrentPage} />
+              <SortFilter setLoading={setLoading} />
+              <Filter setCurrentPage={setCurrentPage} setLoading={setLoading} />
             </form>
           </div>
         </Collapse>

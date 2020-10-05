@@ -1,33 +1,9 @@
-import React, {useState} from "react";
-
-import { useLocation, useHistory } from "react-router-dom";
+import React from "react";
 
 // Prop Types
 import PropTypes from "prop-types";
 
-// add query
-import { setQueryToUrl } from "../../utils";
-
-const RadioButton = ({ value, title }) => {
-
-  let history = useHistory();
-  let location = useLocation();
-  let searchParams = new URLSearchParams(location.search);
-
-  // Sort by
-  const [sortBy, setSortBy] = useState(
-    searchParams.get("sort_by") || "popularity.desc"
-  );
-
-  const onSortChange = (e) => {
-    const { name, value } = e.target;
-    // change sort by value
-    setSortBy(value);
-    // add query
-    setQueryToUrl(name, value, location, history);
-  };
-
-  return (
+const RadioButton = ({ value, title, onSortChange, sortBy }) => (
     <div className="form-group form-check">
       <input
         id={value}
@@ -43,11 +19,12 @@ const RadioButton = ({ value, title }) => {
       </label>
     </div>
   );
-};
 
 RadioButton.propTypes = {
   value: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  sortBy: PropTypes.string.isRequired,
+  onSortChange: PropTypes.func.isRequired,
 };
 
 export default RadioButton;

@@ -11,7 +11,7 @@ import { setYears, setQueryToUrl } from "../../utils";
 // Components
 import SelectOption from "./SelectOption";
 
-const Filter = ({ setCurrentPage }) => {
+const Filter = ({ setCurrentPage, setLoading }) => {
   let history = useHistory();
   let location = useLocation();
   let searchParams = new URLSearchParams(location.search);
@@ -36,10 +36,14 @@ const Filter = ({ setCurrentPage }) => {
     if (name === "language"){
       // add query
       setQueryToUrl(name, value, location, history);
+      // show spinner
+      setLoading(true);
     }else {
       setCurrentPage(1)
       // add query
       setQueryToUrl(name, value, location, history);
+      // show spinner
+      setLoading(true);
     };
   };
 
@@ -64,6 +68,7 @@ const Filter = ({ setCurrentPage }) => {
 
 Filter.propTypes = {
   setCurrentPage: PropTypes.func.isRequired,
+  setLoading: PropTypes.func.isRequired,
 };
 
 export default Filter;
