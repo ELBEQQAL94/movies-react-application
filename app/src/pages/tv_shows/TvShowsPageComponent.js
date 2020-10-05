@@ -76,7 +76,7 @@ const TvShowsPageComponent = () => {
             />
           </>
         ) : (
-          <Warning message="Results Not Found!" />
+          <Warning resultNotFound message="Results Not Found!" />
         )}
       </div>
     </main>

@@ -60,6 +60,7 @@
 * [x] remove fetch data from MoviesPage and tvShows
 * [x] remove addQuery from MoviesPage and TvShowsPage
 * [x] Add default page on Pagination Component
+* [ ] Make addQuery function related to component it's selfe
 
 
 ## API's

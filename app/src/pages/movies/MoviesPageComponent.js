@@ -75,7 +75,7 @@ const MoviesPageComponent = () => {
             />
           </>
         ) : (
-          <Warning message="Results Not Found!" />
+          <Warning resultNotFound message="Results Not Found!" />
         )}
       </div>
     </main>
