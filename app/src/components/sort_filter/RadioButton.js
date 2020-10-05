@@ -15,7 +15,9 @@ const RadioButton = ({ value, title }) => {
   let searchParams = new URLSearchParams(location.search);
 
   // Sort by
-  const [sortBy, setSortBy] = useState(searchParams.get("sort_by") || "popularity.desc");
+  const [sortBy, setSortBy] = useState(
+    searchParams.get("sort_by") || "popularity.desc"
+  );
 
   const onSortChange = (e) => {
     const { name, value } = e.target;
