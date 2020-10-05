@@ -70,6 +70,7 @@
 * [x] Create Sorting Component and Filter Component
 * [x] Add reality source
 * [0] Remove query
+* [ ] add useEffect in Filter component
 
 ## API's
 ----

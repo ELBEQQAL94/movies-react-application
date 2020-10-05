@@ -28,6 +28,7 @@ const TvShowsPageComponent = () => {
   );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [resultNotFound, setResultNotFound] = useState(false);
 
   const TITLE = "Tv Shows";
 
@@ -63,7 +64,6 @@ const TvShowsPageComponent = () => {
             </form>
           </div>
         </Collapse>
-        <Warning error={error} message="Connection failed!" />
         <Helmet>
           <title>{TITLE}</title>
         </Helmet>
@@ -72,13 +72,10 @@ const TvShowsPageComponent = () => {
           setCurrentPage={setCurrentPage}
           totalPages={totalPages}
         />
-        {
-          loading 
-          ? (<Spinner />) 
-          : tvShows && tvShows.length > 0 
-          ? (<Content content={tvShows} />) 
-          : (<Warning resultNotFound message="Results Not Found!" />)
-        }
+        <Warning error={error} resultNotFound={resultNotFound}/>
+        <Spinner loading={loading}/>
+        <Spinner loading={loading}/>
+        <Content content={tvShows} setResultNotFound={setResultNotFound}/>
         <Pagination
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}

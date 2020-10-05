@@ -28,8 +28,11 @@ const MoviesPageComponent = () => {
   );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [resultNotFound, setResultNotFound] = useState(false);
 
   const TITLE = "Movies";
+
+  console.log(resultNotFound)
 
   useEffect(() => {
     let isMounted = true;
@@ -63,7 +66,6 @@ const MoviesPageComponent = () => {
             </form>
           </div>
         </Collapse>
-        <Warning error={error} message="Connection failed!" />
         <Helmet>
           <title>{TITLE}</title>
         </Helmet>
@@ -73,13 +75,9 @@ const MoviesPageComponent = () => {
           setCurrentPage={setCurrentPage}
           setLoading={setLoading}
         />
-        {
-          loading 
-          ? (<Spinner />) 
-          : movies && movies.length > 0 
-          ? (<Content content={movies} />) 
-          : (<Warning resultNotFound message="Results Not Found!" />)
-        }
+        <Warning error={error} resultNotFound={resultNotFound} />
+        <Spinner loading={loading}/>
+        <Content content={movies} setResultNotFound={setResultNotFound}/>
         <Pagination 
           totalPages={totalPages} 
           currentPage={currentPage} 
