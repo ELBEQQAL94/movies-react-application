@@ -50,7 +50,7 @@ const TvShowsPageComponent = () => {
     return () => {
       isMounted = false;
     };
-  }, [location, setTotalPages, setTvShows, setLoading, setError]);
+  }, [location, setError, setLoading, setTvShows, setTotalPages]);
 
   return (
     <main className="main">
@@ -67,25 +67,23 @@ const TvShowsPageComponent = () => {
         <Helmet>
           <title>{TITLE}</title>
         </Helmet>
-        {loading ? (
-          <Spinner />
-        ) : tvShows && tvShows.length > 0 ? (
-          <>
-            <Pagination
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              totalPages={totalPages}
-            />
-            <Content content={tvShows} />
-            <Pagination
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              totalPages={totalPages}
-            />
-          </>
-        ) : (
-          <Warning resultNotFound message="Results Not Found!" />
-        )}
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+        />
+        {
+          loading 
+          ? (<Spinner />) 
+          : tvShows && tvShows.length > 0 
+          ? (<Content content={tvShows} />) 
+          : (<Warning resultNotFound message="Results Not Found!" />)
+        }
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+        />
       </div>
     </main>
   );

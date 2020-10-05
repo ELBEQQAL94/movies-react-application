@@ -50,7 +50,7 @@ const MoviesPageComponent = () => {
     return () => {
       isMounted = false;
     };
-  }, [location, setTotalPages, setMovies, setLoading, setError]);
+  }, [location, setError, setLoading, setMovies, setTotalPages]);
 
   return (
     <main className="main">
@@ -67,17 +67,25 @@ const MoviesPageComponent = () => {
         <Helmet>
           <title>{TITLE}</title>
         </Helmet>
-        {loading ? (
-          <Spinner />
-        ) : movies && movies.length > 0 ? (
-          <>
-            <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
-            <Content content={movies} />
-            <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-          </>
-        ) : (
-          <Warning resultNotFound message="Results Not Found!" />
-        )}
+        <Pagination 
+          totalPages={totalPages} 
+          currentPage={currentPage} 
+          setCurrentPage={setCurrentPage}
+          setLoading={setLoading}
+        />
+        {
+          loading 
+          ? (<Spinner />) 
+          : movies && movies.length > 0 
+          ? (<Content content={movies} />) 
+          : (<Warning resultNotFound message="Results Not Found!" />)
+        }
+        <Pagination 
+          totalPages={totalPages} 
+          currentPage={currentPage} 
+          setCurrentPage={setCurrentPage}
+          setLoading={setLoading} 
+        />
       </div>
     </main>
   );
