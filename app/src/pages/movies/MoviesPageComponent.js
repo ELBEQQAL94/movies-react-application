@@ -32,8 +32,6 @@ const MoviesPageComponent = () => {
 
   const TITLE = "Movies";
 
-  console.log(resultNotFound)
-
   useEffect(() => {
     let isMounted = true;
     const params = searchParams.toString();

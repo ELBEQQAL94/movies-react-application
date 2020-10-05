@@ -71,6 +71,7 @@ const TvShowsPageComponent = () => {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           totalPages={totalPages}
+          setLoading={setLoading}
         />
         <Warning error={error} resultNotFound={resultNotFound}/>
         <Spinner loading={loading}/>
@@ -80,6 +81,7 @@ const TvShowsPageComponent = () => {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           totalPages={totalPages}
+          setLoading={setLoading}
         />
       </div>
     </main>

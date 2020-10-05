@@ -14,7 +14,11 @@ import { setQueryToUrl } from "../../utils";
 // Style
 import "./Pagination.css";
 
-const PaginationComponent = ({ currentPage, setCurrentPage, totalPages }) => {
+const PaginationComponent = ({ 
+  currentPage, 
+  setCurrentPage, 
+  totalPages,
+  setLoading }) => {
   let history = useHistory();
   let location = useLocation();
 
@@ -24,6 +28,7 @@ const PaginationComponent = ({ currentPage, setCurrentPage, totalPages }) => {
 
   const handlePage = (event, value) => {
     setCurrentPage(value);
+    setLoading(true);
   };
 
   return (
@@ -45,6 +50,7 @@ PaginationComponent.propTypes = {
   currentPage: PropTypes.number.isRequired,
   totalPages: PropTypes.number.isRequired,
   setCurrentPage: PropTypes.func.isRequired,
+  setLoading: PropTypes.func.isRequired,
 };
 
 export default PaginationComponent;
