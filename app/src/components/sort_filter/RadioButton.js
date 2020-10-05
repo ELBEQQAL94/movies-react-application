@@ -6,7 +6,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // add query
-import { addQuery } from "../../utils";
+import { setQueryToUrl } from "../../utils";
 
 const RadioButton = ({ value, title }) => {
 
@@ -22,7 +22,7 @@ const RadioButton = ({ value, title }) => {
     // change sort by value
     setSortBy(value);
     // add query
-    addQuery(name, value, location, history);
+    setQueryToUrl(name, value, location, history);
   };
 
   return (

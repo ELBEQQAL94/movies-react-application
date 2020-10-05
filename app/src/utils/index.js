@@ -10,7 +10,7 @@ export function setYears() {
 };
 
 // add query
-export const addQuery = (key, value, location, history) => {
+export const setQueryToUrl = (key, value, location, history) => {
     let pathname = location.pathname;
     let search = location.search; 
     let searchParams = new URLSearchParams(search); 

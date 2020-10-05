@@ -60,8 +60,15 @@
 * [x] remove fetch data from MoviesPage and tvShows
 * [x] remove addQuery from MoviesPage and TvShowsPage
 * [x] Add default page on Pagination Component
-* [ ] Make addQuery function related to component it's selfe
-
+* [ ] Make addQuery function related to component itself 
+* [x] Make filter take paramater and know what should to return 
+    * If filter name not equal to language, thene set page to 1.
+* [x] Rename addQuery to setQueryToUrl
+* [ ] Add current page to Paginaton itself
+* [x] Keep filter instance
+* [x] Create Sorting Component and Filter Component
+* [ ] Add reality source
+* [ ] Remove query
 
 ## API's
 ----

@@ -15,8 +15,8 @@ const Warning = ({ message, error, resultNotFound }) => {
 
 Warning.propTypes = {
   message: PropTypes.string.isRequired,
-  error: PropTypes.bool.isRequired,
-  resultNotFound: PropTypes.bool.isRequired,
+  error: PropTypes.bool,
+  resultNotFound: PropTypes.bool,
 };
 
 export default Warning;

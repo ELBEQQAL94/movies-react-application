@@ -11,7 +11,9 @@ import tvShowsService from "../../services/tvShows";
 // Components
 import Content from "../../components/content/Content";
 import Spinner from "../../components/elements/Spinner";
+import Collapse from "../../components/collapse/Collapse";
 import Filter from "../../components/filter/Filter";
+import SortFilter from "../../components/sort_filter/SortFilter";
 import Pagination from "../../components/pagination/Pagination";
 import Warning from "../../components/warning/Warning";
 
@@ -28,7 +30,6 @@ const TvShowsPageComponent = () => {
   const [error, setError] = useState(false);
 
   const TITLE = "Tv Shows";
-
 
   useEffect(() => {
     let isMounted = true;
@@ -54,7 +55,14 @@ const TvShowsPageComponent = () => {
   return (
     <main className="main">
       <div className="container">
-        <Filter setCurrentPage={setCurrentPage} />
+        <Collapse>
+          <div className="filter__container">
+            <form>
+              <SortFilter />
+              <Filter setCurrentPage={setCurrentPage} />
+            </form>
+          </div>
+        </Collapse>
         <Warning error={error} message="Connection failed!" />
         <Helmet>
           <title>{TITLE}</title>

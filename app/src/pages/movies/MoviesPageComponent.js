@@ -11,7 +11,9 @@ import moviesService from "../../services/movies";
 // Components
 import Content from "../../components/content/Content";
 import Spinner from "../../components/elements/Spinner";
+import Collapse from "../../components/collapse/Collapse";
 import Filter from "../../components/filter/Filter";
+import SortFilter from "../../components/sort_filter/SortFilter";
 import Pagination from "../../components/pagination/Pagination";
 import Warning from "../../components/warning/Warning";
 
@@ -53,7 +55,14 @@ const MoviesPageComponent = () => {
   return (
     <main className="main">
       <div className="container">
-        <Filter setCurrentPage={setCurrentPage} />
+        <Collapse>
+          <div className="filter__container">
+            <form>
+              <SortFilter />
+              <Filter setCurrentPage={setCurrentPage} />
+            </form>
+          </div>
+        </Collapse>
         <Warning error={error} message="Connection failed!" />
         <Helmet>
           <title>{TITLE}</title>
@@ -62,17 +71,9 @@ const MoviesPageComponent = () => {
           <Spinner />
         ) : movies && movies.length > 0 ? (
           <>
-            <Pagination
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              totalPages={totalPages}
-            />
+            <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
             <Content content={movies} />
-            <Pagination
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              totalPages={totalPages}
-            />
+            <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
           </>
         ) : (
           <Warning resultNotFound message="Results Not Found!" />

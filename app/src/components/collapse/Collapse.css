@@ -1,0 +1,19 @@
+.filter__container {
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 4em;
+    padding: 20px;
+}
+
+.filter__container h2 {
+    margin-bottom: 1em;
+}
+
+.filter__container form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filter__container form > div {
+    margin-left: 20px;
+}

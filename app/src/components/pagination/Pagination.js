@@ -9,7 +9,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import PropTypes from "prop-types";
 
 // add query
-import { addQuery } from "../../utils";
+import { setQueryToUrl } from "../../utils";
 
 // Style
 import "./Pagination.css";
@@ -19,7 +19,7 @@ const PaginationComponent = ({ currentPage, setCurrentPage, totalPages }) => {
   let location = useLocation();
 
   useEffect(() => 
-    addQuery("page", currentPage, location, history)
+    setQueryToUrl("page", currentPage, location, history)
   , [currentPage]);
 
   const handlePage = (event, value) => {

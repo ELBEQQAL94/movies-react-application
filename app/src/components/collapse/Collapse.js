@@ -1,5 +1,8 @@
 import React from "react";
 
+// Style
+import "./Collapse.css";
+
 const Collapse = ({ children }) => {
   return (
     <div className="mb-4">
