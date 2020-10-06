@@ -45,8 +45,6 @@ const Filter = ({ setCurrentPage, setLoading }) => {
     if (name === "language"){
       // add query
       setQueryToUrl(name, value, location, history);
-      // show spinner
-      setLoading(true);
     }else {
       setCurrentPage(1)
       // add query
