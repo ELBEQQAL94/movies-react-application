@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useHistory, useLocation } from "react-router-dom";
 
@@ -17,7 +17,7 @@ const Filter = ({ setCurrentPage, setLoading }) => {
   let searchParams = new URLSearchParams(location.search);
 
   // filter object
-  const [filter, setFilter] = useState({
+  const [filters, setFilters] = useState({
     language: searchParams.get("language") || "en",
     year: searchParams.get("year") || "2020",
   });
@@ -28,11 +28,20 @@ const Filter = ({ setCurrentPage, setLoading }) => {
   // generate years from 1994
   const years = setYears();
 
+  // useEffect(() =>{
+  //   for(let filter in filters ) {
+  //     const name = filter;
+  //     const value = filters[filter];
+  //     console.log(`${name}: `, value);
+  //     setQueryToUrl(name, value, location, history);
+  //   };
+  // }, [filters])
+
   // handle filter
   const onFilterChange = (e) => {
     const { name, value } = e.target;
     // set filter
-    setFilter({ ...filter, [name]: value });
+    setFilters({ ...filters, [name]: value });
     if (name === "language"){
       // add query
       setQueryToUrl(name, value, location, history);
@@ -47,17 +56,19 @@ const Filter = ({ setCurrentPage, setLoading }) => {
     };
   };
 
+  const {language, year} = filters;
+
   return (
     <>
       <SelectOption
-        filter={filter.language}
+        filter={language}
         name="language"
         onFilterChange={onFilterChange}
         options={options}
       />
 
       <SelectOption
-        filter={filter.year}
+        filter={year}
         name="year"
         onFilterChange={onFilterChange}
         options={years}

@@ -71,6 +71,7 @@
 * [x] Add reality source
 * [0] Remove query
 * [ ] add useEffect in Filter component
+* [ ] Add include_adult filter param
 
 ## API's
 ----
