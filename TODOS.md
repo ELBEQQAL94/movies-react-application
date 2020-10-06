@@ -72,6 +72,23 @@
 * [x] Add loading when user create an action to server
 * [x] Refactorin Movies and TvShows Pages
 * [x] Catch queries not found errors
+
+----
+* [x] Install firebase
+* [x] Setup firebase
+* [ ] Upload files best practices
+* [ ] Create firestore
+* [ ] Add CreateElementPage Component
+    * image
+    * type
+    * name
+    * year
+* [ ] Add CreateElementPage path
+* [ ] Add react-form-hooks
+* [ ] Validate form
+* [ ] Add new elements in firestore based on type (movies or tvShows)
+* [ ] Make sure new elements added in beginning of the array
+
 ## API's
 ----
 
