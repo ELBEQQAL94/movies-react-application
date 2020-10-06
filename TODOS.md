@@ -78,16 +78,19 @@
 * [x] Setup firebase
 * [ ] Upload files best practices
 * [ ] Create firestore
-* [ ] Add CreateElementPage Component
+* [x] Add CreateElementPage Component
     * image
     * type
     * name
     * year
 * [x] Add CreateElementPage path
 * [x] Add react-form-hooks
-* [ ] Validate form
+* [x] Validate forms
 * [ ] Add new elements in firestore based on type (movies or tvShows)
 * [ ] Make sure new elements added in beginning of the array
+* [ ] Add some styles to forms if required
+* [ ] Make label more clear 
+* [ ] Make error red color
 
 ## API's
 ----
