@@ -65,14 +65,13 @@
 * [x] Make filter take paramater and know what should to return 
     * If filter name not equal to language, thene set page to 1.
 * [x] Rename addQuery to setQueryToUrl
-* [0] Add current page to Paginaton itself
 * [x] Keep filter instance
 * [x] Create Sorting Component and Filter Component
 * [x] Add reality source
-* [0] Remove query
 * [ ] add useEffect in Filter component
-* [ ] Add include_adult filter param
-
+* [x] Add loading when user create an action to server
+* [x] Refactorin Movies and TvShows Pages
+* [x] Catch queries not found errors
 ## API's
 ----
 
