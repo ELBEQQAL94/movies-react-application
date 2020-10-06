@@ -102,8 +102,10 @@
 * [ ] Make error red color
 * [x] Refactor create element page
 * [ ] Check warnnings
-* [ ] Add Error component
+* [x] Add Error component
 * [ ] Display error in case set data to database failed
+* [x] Upload files
+    * ref: https://programmingwithmosh.com/javascript/react-file-upload-proper-server-side-nodejs-easy/
 
 ## API's
 ----
