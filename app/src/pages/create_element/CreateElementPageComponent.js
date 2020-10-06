@@ -34,8 +34,9 @@ const CreateElementPageComponent = () => {
   };
 
   const onSubmit = (data) => {
+      data.image = image;
     console.log("New Element: ", data);
-    // add data to firestore
+    // add data to firestore...
   };
 
   //console.log("image as url: ", imageAsUrl);
@@ -132,11 +133,13 @@ const CreateElementPageComponent = () => {
                 Tv Shows
               </label>
             </div>
-            <input
-              className="btn btn-primary btn-block"
-              type="submit"
-              value="Add element"
-            />
+            <button 
+                disabled={loading}
+                className="btn btn-primary btn-block"
+                type="submit"
+            >
+                Add element
+            </button>
           </form>
         </div>
       </div>

@@ -103,6 +103,7 @@
 * [ ] Make error red color
 * [ ] Refactor create element page
 * [ ] Check warnnings
+* [ ] Add Error component
 
 ## API's
 ----

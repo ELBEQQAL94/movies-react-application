@@ -1,8 +1,5 @@
 import React, {useState, useEffect} from "react";
 
-// react hooks form for validation
-import { useForm } from "react-hook-form";
-
 // Prop Types
 import PropTypes from "prop-types";
 
@@ -11,9 +8,7 @@ import { storage } from "../../services/firebase";
 
 const UploadImage = ({setImage, setLoading}) => {
 
-    const { register, errors } = useForm();
     const [imageAsFile, setImageAsFile] = useState("");
-    //const [image, setImage] = useState("");
 
     useEffect(() => {
         if(imageAsFile['name']){
@@ -68,13 +63,8 @@ const UploadImage = ({setImage, setLoading}) => {
                     id="image"
                     name="image"
                     onChange={handleImageAsFile}
-                    ref={register({ required: true })}
+                    required
                 />
-                {errors.image && (
-                    <small id="nameHelp" className="form-text text-muted">
-                    Image is required
-                    </small>
-                )}
             </div>
         </>
     );
