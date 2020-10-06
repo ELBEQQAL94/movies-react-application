@@ -87,8 +87,10 @@
 * [x] Add react-form-hooks
 * [x] Validate forms
 * [x] Setup storage on firebase
-* [ ] Add new elements in firestore based on type (movies or tvShows)
-* [ ] Make sure new elements added in beginning of the array
+* [x] Setup rules on firebase storage
+* [x] Store image as file
+* [x] Get image as url
+* [ ] Add new elements on top of the page in firestore based on type (movies or tvShows)
 * [ ] Add some styles to forms if required
 * [ ] Make label more clear 
 * [ ] Make error red color
