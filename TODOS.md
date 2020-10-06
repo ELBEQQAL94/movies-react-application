@@ -84,7 +84,7 @@
     * name
     * year
 * [x] Add CreateElementPage path
-* [ ] Add react-form-hooks
+* [x] Add react-form-hooks
 * [ ] Validate form
 * [ ] Add new elements in firestore based on type (movies or tvShows)
 * [ ] Make sure new elements added in beginning of the array

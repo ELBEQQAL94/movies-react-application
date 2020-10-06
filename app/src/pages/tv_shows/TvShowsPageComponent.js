@@ -55,6 +55,9 @@ const TvShowsPageComponent = () => {
 
   return (
     <main className="main">
+      <Helmet>
+        <title>{TITLE}</title>
+      </Helmet>
       <div className="container">
         <Collapse>
           <div className="filter__container">
@@ -64,9 +67,6 @@ const TvShowsPageComponent = () => {
             </form>
           </div>
         </Collapse>
-        <Helmet>
-          <title>{TITLE}</title>
-        </Helmet>
         <Pagination
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}

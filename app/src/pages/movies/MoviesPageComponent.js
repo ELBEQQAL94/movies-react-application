@@ -55,6 +55,9 @@ const MoviesPageComponent = () => {
 
   return (
     <main className="main">
+      <Helmet>
+        <title>{TITLE}</title>
+      </Helmet>
       <div className="container">
         <Collapse>
           <div className="filter__container">
@@ -64,9 +67,6 @@ const MoviesPageComponent = () => {
             </form>
           </div>
         </Collapse>
-        <Helmet>
-          <title>{TITLE}</title>
-        </Helmet>
         <Pagination 
           totalPages={totalPages} 
           currentPage={currentPage} 
