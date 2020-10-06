@@ -94,15 +94,13 @@
 * [x] Create UploadImage Component
 * [x] Sperate upload function logic to other function
 * [x] Add new elements to database (firestore)
-* [ ] Add uuid
-* [ ] Add loading when create element is upload to server
+* [x] Add uuid
+* [x] Add loading when create element is upload to server
 * [ ] Handle image size (best practices)
-* [ ] Style button
+* [x] Style button
 * [ ] Add new elements on top of the page in firestore based on type (movies or tvShows)
-* [ ] Add some styles to forms if required
-* [ ] Make label more clear 
 * [ ] Make error red color
-* [ ] Refactor create element page
+* [x] Refactor create element page
 * [ ] Check warnnings
 * [ ] Add Error component
 * [ ] Display error in case set data to database failed
