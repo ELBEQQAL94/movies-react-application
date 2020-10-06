@@ -25,7 +25,7 @@ const Content = ({ content, setResultNotFound }) => {
       </section>
     );
   } else {
-    setTimeout(() => setResultNotFound(true), 2000);
+    setTimeout(() => setResultNotFound(true), 5000);
     return null;
   };
 };

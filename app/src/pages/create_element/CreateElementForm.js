@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 
+import { useHistory} from "react-router-dom";
+
 // random id
 import { v4 as uuidv4 } from 'uuid';
 
@@ -17,7 +19,7 @@ import UploadImage from "../../components/upload_image/UploadImage";
 import Image from "../../components/image/Image";
 
 const CreateElementForm = () => {
-    
+  const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -37,17 +39,17 @@ const CreateElementForm = () => {
   };
 
   const onSubmit = (data) => {
-      data.id = uuidv4();
       data.image = image;
-      console.log("New Element: ", data);
+      const {type} = data;
+      const path = type === "movie" ? "/movies" : "/tv-shows";
       // add data to firestore...
       db
         .collection('elements')
-        .doc(data.name)
+        .doc(uuidv4())
         .set(data);
     
-        // with replace you can't back to payment page after payment done!
-        // history.replace('/orders')
+        // redirect user based on element type
+        history.push(path);
   };
 
 
@@ -137,7 +139,7 @@ const CreateElementForm = () => {
         className="btn btn-primary btn-block"
         type="submit"
       >
-        Add element
+        ADD ELEMENT
       </button>
     </form>
   );

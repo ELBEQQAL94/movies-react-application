@@ -8,6 +8,9 @@ import { Helmet } from "react-helmet";
 // FETCH TVSHOWS FROM SERVER
 import tvShowsService from "../../services/tvShows";
 
+// FETCH NEW ELEMENTS FROM FIRESTORE 
+import { fetchNewElements } from "../../services/firebase";
+
 // Components
 import Content from "../../components/content/Content";
 import Spinner from "../../components/elements/Spinner";
@@ -22,6 +25,7 @@ const TvShowsPageComponent = () => {
   let searchParams = new URLSearchParams(location.search);
 
   const [tvShows, setTvShows] = useState([]);
+  const [newTvShows, setNewTvShows] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(
     +searchParams.get("page") || 1
@@ -47,11 +51,26 @@ const TvShowsPageComponent = () => {
         setLoading(false);
         setError(true);
       });
+    
+  fetchNewElements("tv-shows")
+    .then((snapshot) => {
+      let data = [];
+      snapshot.forEach((doc) => {
+        data.push({
+          uid: doc.id,
+          ...doc.data(),
+        });
+      });
+        setNewTvShows(data);
+      })
+    .catch((err) => console.log("err", err));
 
     return () => {
       isMounted = false;
     };
   }, [location, setError, setLoading, setTvShows, setTotalPages]);
+
+  console.log('new tv shows: ', newTvShows);
 
   return (
     <main className="main">

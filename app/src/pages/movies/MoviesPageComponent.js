@@ -8,6 +8,9 @@ import { Helmet } from "react-helmet";
 // SORT MOVIES FROM SERVER
 import moviesService from "../../services/movies";
 
+// FETCH NEW ELEMENTS FROM FIRESTORE 
+import { fetchNewElements } from "../../services/firebase";
+
 // Components
 import Content from "../../components/content/Content";
 import Spinner from "../../components/elements/Spinner";
@@ -22,6 +25,7 @@ const MoviesPageComponent = () => {
   let searchParams = new URLSearchParams(location.search);
 
   const [movies, setMovies] = useState([]);
+  const [newMovies, setNewMovies] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(
     +searchParams.get("page") || 1
@@ -48,10 +52,25 @@ const MoviesPageComponent = () => {
         setError(true);
       });
 
+    fetchNewElements("movie")
+          .then((snapshot) => {
+            let data = [];
+            snapshot.forEach((doc) => {
+              data.push({
+                uid: doc.id,
+                ...doc.data(),
+              });
+            });
+            setNewMovies(data);
+          })
+          .catch((err) => console.log("err", err));
+
     return () => {
       isMounted = false;
     };
   }, [location, setError, setLoading, setMovies, setTotalPages]);
+
+  console.log('new movies: ', newMovies);
 
   return (
     <main className="main">

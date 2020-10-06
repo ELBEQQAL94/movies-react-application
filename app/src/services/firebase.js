@@ -19,8 +19,10 @@ const db = firebaseApp.firestore();
 
 // firebase storage
 const storage = firebaseApp.storage();
+const fetchNewElements = (type) => db.collection("elements").where("type", "==", type).get();
 
 export {
   db,
   storage,
+  fetchNewElements,
 };
