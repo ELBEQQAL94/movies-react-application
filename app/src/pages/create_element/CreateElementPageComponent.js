@@ -12,6 +12,9 @@ import { storage } from "../../services/firebase";
 // utils
 import { setYears } from "../../utils";
 
+// Style
+import "./CreateElementPageComponent.css";
+
 const CreateElementPageComponent = () => {
   const TITLE = "Create Element";
   const { register, handleSubmit, watch, errors } = useForm();
@@ -19,6 +22,7 @@ const CreateElementPageComponent = () => {
     name: "",
     year: "",
     type: "movie",
+    image: "",
   });
 
   const [imageAsFile, setImageAsFile] = useState("");
@@ -60,16 +64,18 @@ const CreateElementPageComponent = () => {
           .getDownloadURL()
           .then((fireBaseUrl) => {
             data.image = fireBaseUrl;
+            setInput({...inputs, image: fireBaseUrl})
           });
       }
     );
     console.log("New Element: ", data);
+    // add data to firestore
   };
 
   //console.log("image as url: ", imageAsUrl);
 
-  const { name, year, type } = inputs;
-
+  const { name, year, type, image } = inputs;
+  console.log("inputs: ", inputs);
   return (
     <main className="main">
       <Helmet>
@@ -99,6 +105,15 @@ const CreateElementPageComponent = () => {
                 </small>
               )}
             </div>
+
+            {/*Display image*/}
+            {
+                image.length !== 0 && (
+                    <div className="image__container">
+                        <img src={image} alt="image tag" />
+                    </div>
+                )
+            }
 
             {/* Image */}
             <div className="form-group">

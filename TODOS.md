@@ -90,6 +90,7 @@
 * [x] Setup rules on firebase storage
 * [x] Store image as file
 * [x] Get image as url
+* [ ] Sperate upload function logic to other function
 * [ ] Add loading when create element is upload to server
 * [ ] Handle image size (best practices)
 * [ ] Style button
