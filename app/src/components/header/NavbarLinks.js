@@ -15,6 +15,9 @@ const NavbarLinks = () => (
       <li className="nav-item">
         <CustomeLink to="/tv-shows" label="Tv Shows" />
       </li>
+      <li className="nav-item">
+        <CustomeLink to="/create-element" label="Create Element" />
+      </li>
     </ul>
   </div>
 );

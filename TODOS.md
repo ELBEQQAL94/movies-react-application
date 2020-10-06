@@ -83,7 +83,7 @@
     * type
     * name
     * year
-* [ ] Add CreateElementPage path
+* [x] Add CreateElementPage path
 * [ ] Add react-form-hooks
 * [ ] Validate form
 * [ ] Add new elements in firestore based on type (movies or tvShows)
