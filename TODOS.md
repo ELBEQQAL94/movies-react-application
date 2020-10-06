@@ -90,7 +90,10 @@
 * [x] Setup rules on firebase storage
 * [x] Store image as file
 * [x] Get image as url
-* [ ] Sperate upload function logic to other function
+* [ ] reset forms
+* [ ] show popup (element created!)
+* [x] Create UploadImage Component
+* [x] Sperate upload function logic to other function
 * [ ] Add loading when create element is upload to server
 * [ ] Handle image size (best practices)
 * [ ] Style button
@@ -99,6 +102,7 @@
 * [ ] Make label more clear 
 * [ ] Make error red color
 * [ ] Refactor create element page
+* [ ] Check warnnings
 
 ## API's
 ----

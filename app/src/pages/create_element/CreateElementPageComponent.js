@@ -6,26 +6,24 @@ import { useForm } from "react-hook-form";
 // Change title of the document
 import { Helmet } from "react-helmet";
 
-// firebase storage
-import { storage } from "../../services/firebase";
-
 // utils
 import { setYears } from "../../utils";
 
-// Style
-import "./CreateElementPageComponent.css";
+// Component
+import UploadImage from "../../components/upload_image/UploadImage";
+import Image from "../../components/image/Image";
 
 const CreateElementPageComponent = () => {
   const TITLE = "Create Element";
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
   const [inputs, setInput] = useState({
     name: "",
     year: "",
     type: "movie",
     image: "",
   });
-
-  const [imageAsFile, setImageAsFile] = useState("");
 
   // generate years from 1994
   const years = setYears();
@@ -35,47 +33,15 @@ const CreateElementPageComponent = () => {
     setInput({ ...inputs, [name]: value });
   };
 
-  const handleImageAsFile = (e) => {
-    const image = e.target.files[0];
-    setImageAsFile((imageFile) => image);
-  };
-
   const onSubmit = (data) => {
-    const uploadTask = storage
-      .ref(`/images/${imageAsFile.name}`)
-      .put(imageAsFile);
-    //initiates the firebase side uploading
-    uploadTask.on(
-      "state_changed",
-      (snapShot) => {
-        //takes a snap shot of the process as it is happening
-        console.log(snapShot);
-      },
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        // gets the functions from storage refences the image storage in firebase by the children
-        // gets the download url then sets the image from firebase as the value for the imgUrl key:
-        storage
-          .ref("images")
-          .child(imageAsFile.name)
-          .getDownloadURL()
-          .then((fireBaseUrl) => {
-            data.image = fireBaseUrl;
-            setInput({...inputs, image: fireBaseUrl})
-          });
-      }
-    );
     console.log("New Element: ", data);
     // add data to firestore
   };
 
   //console.log("image as url: ", imageAsUrl);
 
-  const { name, year, type, image } = inputs;
-  console.log("inputs: ", inputs);
+  const { name, year, type } = inputs;
+  //console.log("inputs: ", inputs);
   return (
     <main className="main">
       <Helmet>
@@ -106,32 +72,13 @@ const CreateElementPageComponent = () => {
               )}
             </div>
 
-            {/*Display image*/}
-            {
-                image.length !== 0 && (
-                    <div className="image__container">
-                        <img src={image} alt="image tag" />
-                    </div>
-                )
-            }
+            <Image image={image} loading={loading} />
 
-            {/* Image */}
-            <div className="form-group">
-              <label htmlFor="image">Upload Image</label>
-              <input
-                type="file"
-                className="form-control-file"
-                id="image"
-                name="image"
-                onChange={handleImageAsFile}
-                ref={register({ required: true })}
-              />
-              {errors.image && (
-                <small id="nameHelp" className="form-text text-muted">
-                  Image is required
-                </small>
-              )}
-            </div>
+            <UploadImage 
+                setImage={setImage} 
+                setLoading={setLoading}
+            />
+
             {/* Year (select options) */}
             <div className="form-group">
               <select
@@ -185,10 +132,10 @@ const CreateElementPageComponent = () => {
                 Tv Shows
               </label>
             </div>
-            <input 
-                className="btn btn-primary btn-block" 
-                type="submit"
-                value="Add element" 
+            <input
+              className="btn btn-primary btn-block"
+              type="submit"
+              value="Add element"
             />
           </form>
         </div>
