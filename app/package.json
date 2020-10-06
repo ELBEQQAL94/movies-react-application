@@ -17,7 +17,8 @@
     "react-helmet": "^6.1.0",
     "react-hook-form": "^6.9.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "uuid": "^8.3.1"
   },
   "scripts": {
     "start": "react-scripts start",

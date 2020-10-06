@@ -91,10 +91,10 @@
 * [x] Store image as file
 * [x] Get image as url
 * [x] Create CreateElementForm Component
-* [ ] reset forms
-* [ ] show popup (element created!)
 * [x] Create UploadImage Component
 * [x] Sperate upload function logic to other function
+* [x] Add new elements to database (firestore)
+* [ ] Add uuid
 * [ ] Add loading when create element is upload to server
 * [ ] Handle image size (best practices)
 * [ ] Style button
@@ -105,6 +105,7 @@
 * [ ] Refactor create element page
 * [ ] Check warnnings
 * [ ] Add Error component
+* [ ] Display error in case set data to database failed
 
 ## API's
 ----

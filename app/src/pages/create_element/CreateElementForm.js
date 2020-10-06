@@ -1,7 +1,13 @@
 import React, {useState} from "react";
 
+// random id
+import { v4 as uuidv4 } from 'uuid';
+
 // react hooks form for validation
 import { useForm } from "react-hook-form";
+
+// firestore from firebase
+import { db } from '../../services/firebase';
 
 // utils
 import { setYears } from "../../utils";
@@ -31,9 +37,17 @@ const CreateElementForm = () => {
   };
 
   const onSubmit = (data) => {
+      data.id = uuidv4();
       data.image = image;
-    console.log("New Element: ", data);
-    // add data to firestore...
+      console.log("New Element: ", data);
+      // add data to firestore...
+      db
+        .collection('elements')
+        .doc(data.name)
+        .set(data);
+    
+        // with replace you can't back to payment page after payment done!
+        // history.replace('/orders')
   };
 
 
@@ -100,7 +114,7 @@ const CreateElementForm = () => {
           ref={register()}
         />
         <label className="form-check-label" htmlFor="movie">
-          movie
+          Movie
         </label>
       </div>
       <div className="form-group form-check">
