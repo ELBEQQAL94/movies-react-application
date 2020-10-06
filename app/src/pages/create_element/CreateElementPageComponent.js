@@ -14,8 +14,9 @@ const CreateElementPageComponent = () => {
     const { register, handleSubmit, watch, errors } = useForm();
     const [inputs, setInput] = useState({
         name: '',
-        year: ''
-    })
+        year: '',
+        type: 'movie',
+    });
 
     // generate years from 1994
     const years = setYears();
@@ -31,7 +32,7 @@ const CreateElementPageComponent = () => {
         console.log(data)
     };
 
-    const {name, year} = inputs;
+    const {name, year, type} = inputs;
 
     return (
         <main className="main">
@@ -101,6 +102,36 @@ const CreateElementPageComponent = () => {
                             >Year is required</small>}
                         </div>
                         {/* Type (radio button) */}
+                        <div className="form-group form-check">
+                            <input
+                                id="movie"
+                                type="radio"
+                                value="movie"
+                                className="form-check-input"
+                                name="type"
+                                checked={type === "movie"}
+                                onChange={handleChange}
+                                ref={register()}
+                            />
+                            <label className="form-check-label" htmlFor="movie">
+                                movie
+                            </label>
+                        </div>
+                        <div className="form-group form-check">
+                            <input
+                                id="tv-shows"
+                                type="radio"
+                                value="tv-shows"
+                                className="form-check-input"
+                                name="type"
+                                checked={type === "tv-shows"}
+                                onChange={handleChange}
+                                ref={register()}
+                            />
+                            <label className="form-check-label" htmlFor="tv-shows">
+                                Tv Shows
+                            </label>
+                        </div>
                         <input type="submit" />
                     </form>
                 </div>

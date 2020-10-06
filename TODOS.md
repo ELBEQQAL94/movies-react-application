@@ -79,18 +79,20 @@
 * [ ] Upload files best practices
 * [ ] Create firestore
 * [x] Add CreateElementPage Component
-    * image
-    * type
-    * name
-    * year
+    * [x] image
+    * [x] type
+    * [x] name
+    * [x] year
 * [x] Add CreateElementPage path
 * [x] Add react-form-hooks
 * [x] Validate forms
+* [x] Setup storage on firebase
 * [ ] Add new elements in firestore based on type (movies or tvShows)
 * [ ] Make sure new elements added in beginning of the array
 * [ ] Add some styles to forms if required
 * [ ] Make label more clear 
 * [ ] Make error red color
+* [ ] Refactor create element page
 
 ## API's
 ----
