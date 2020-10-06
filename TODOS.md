@@ -90,6 +90,7 @@
 * [x] Setup rules on firebase storage
 * [x] Store image as file
 * [x] Get image as url
+* [x] Create CreateElementForm Component
 * [ ] reset forms
 * [ ] show popup (element created!)
 * [x] Create UploadImage Component
