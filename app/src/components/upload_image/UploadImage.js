@@ -71,7 +71,7 @@ const UploadImage = ({ setImage, setLoading }) => {
 
   const checkFileSize = (e) => {
     let fileSize = e.target.files[0].size;
-    let size = 15000;
+    let size = 40000;
     if (fileSize > size) {
       // create error message and assign to container
       setError(true);
@@ -82,8 +82,6 @@ const UploadImage = ({ setImage, setLoading }) => {
     }
     setError(false);
     setMessage("");
-    return true;
-
     return true;
   };
 
