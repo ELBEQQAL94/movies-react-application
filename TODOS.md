@@ -90,6 +90,9 @@
 * [x] Setup rules on firebase storage
 * [x] Store image as file
 * [x] Get image as url
+* [ ] Add loading when create element is upload to server
+* [ ] Handle image size (best practices)
+* [ ] Style button
 * [ ] Add new elements on top of the page in firestore based on type (movies or tvShows)
 * [ ] Add some styles to forms if required
 * [ ] Make label more clear 

@@ -20,9 +20,8 @@ const CreateElementPageComponent = () => {
     year: "",
     type: "movie",
   });
-  const allInputs = { imgUrl: "" };
+
   const [imageAsFile, setImageAsFile] = useState("");
-  const [imageAsUrl, setImageAsUrl] = useState(allInputs);
 
   // generate years from 1994
   const years = setYears();
@@ -32,9 +31,12 @@ const CreateElementPageComponent = () => {
     setInput({ ...inputs, [name]: value });
   };
 
+  const handleImageAsFile = (e) => {
+    const image = e.target.files[0];
+    setImageAsFile((imageFile) => image);
+  };
+
   const onSubmit = (data) => {
-    // const formData = new FormData();
-    // formData.append('image', data.image[0]);
     const uploadTask = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
@@ -57,21 +59,14 @@ const CreateElementPageComponent = () => {
           .child(imageAsFile.name)
           .getDownloadURL()
           .then((fireBaseUrl) => {
-            setImageAsUrl((prevObject) => ({
-              ...prevObject,
-              imgUrl: fireBaseUrl,
-            }));
+            data.image = fireBaseUrl;
           });
       }
     );
+    console.log("New Element: ", data);
   };
 
-  console.log("image as url: ", imageAsUrl);
-
-  const handleImageAsFile = (e) => {
-    const image = e.target.files[0];
-    setImageAsFile((imageFile) => image);
-  };
+  //console.log("image as url: ", imageAsUrl);
 
   const { name, year, type } = inputs;
 
@@ -175,7 +170,11 @@ const CreateElementPageComponent = () => {
                 Tv Shows
               </label>
             </div>
-            <input type="submit" />
+            <input 
+                className="btn btn-primary btn-block" 
+                type="submit"
+                value="Add element" 
+            />
           </form>
         </div>
       </div>
