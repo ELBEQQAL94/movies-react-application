@@ -49,7 +49,7 @@ const CreateElementForm = () => {
         .set(data);
     
         // redirect user based on element type
-        history.push(path);
+        //history.push(path);
   };
 
 
