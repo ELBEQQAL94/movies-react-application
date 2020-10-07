@@ -106,6 +106,9 @@
 * [x] Display error in case set data to database failed
 * [x] Upload files
     * ref: https://programmingwithmosh.com/javascript/react-file-upload-proper-server-side-nodejs-easy/
+    * https://www.pluralsight.com/guides/asynchronous-file-upload-react
+    * https://codehandbook.org/file-upload-security-best-practices/
+* [x] Add progress bar to track the uploading of the file
 
 ## API's
 ----

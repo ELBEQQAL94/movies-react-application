@@ -11,11 +11,12 @@ import ErrorMessage from "../../components/error_message/ErrorMessage";
 
 const UploadImage = ({ setImage, setLoading }) => {
   const [imageAsFile, setImageAsFile] = useState("");
+  const [progress, setProgress] = useState(0);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    if (imageAsFile["name"]) {
+    if (imageAsFile !== "" && imageAsFile["name"]) {
       uploadImg();
     }
   }, [imageAsFile]);
@@ -27,9 +28,10 @@ const UploadImage = ({ setImage, setLoading }) => {
     //initiates the firebase side uploading
     upload.on(
       "state_changed",
-      (snapShot) => {
+      (snapshot) => {
         //takes a snap shot of the process as it is happening
-        console.log(snapShot);
+        //console.log(snapshot);
+        setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
       },
       (err) => {
         //catches the errors
@@ -51,18 +53,20 @@ const UploadImage = ({ setImage, setLoading }) => {
   };
 
   const checkMimeType = (e) => {
-    //getting file object
-    let typeFile = e.target.files[0].type;
     // list allow mime type
     const types = ["image/png", "image/jpeg", "image/gif"];
     // compare file type find doesn't matach
-    if (types.every((type) => typeFile !== type)) {
-      // create error message and assign to container
-      setError(true);
-      setMessage("Is not a supported format");
-      // discard selected file
-      e.target.value = null;
-      return false;
+    if(e.target.files[0]) {
+      //getting file object
+      let typeFile = e.target.files[0].type;
+      if (types.every((type) => typeFile !== type)) {
+        // create error message and assign to container
+        setError(true);
+        setMessage("Is not a supported format");
+        // discard selected file
+        e.target.value = null;
+        return false;
+      }
     }
     setError(false);
     setMessage("");
@@ -70,15 +74,17 @@ const UploadImage = ({ setImage, setLoading }) => {
   };
 
   const checkFileSize = (e) => {
-    let fileSize = e.target.files[0].size;
     let size = 40000;
-    if (fileSize > size) {
-      // create error message and assign to container
-      setError(true);
-      setMessage("Is too large, please pick a smaller file");
-      // discard selected file
-      e.target.value = null;
-      return false;
+    if(e.target.files[0]) {
+      let fileSize = e.target.files[0].size;
+      if (fileSize > size) {
+        // create error message and assign to container
+        setError(true);
+        setMessage("Is too large, please pick a smaller file");
+        // discard selected file
+        e.target.value = null;
+        return false;
+      }
     }
     setError(false);
     setMessage("");
@@ -86,10 +92,10 @@ const UploadImage = ({ setImage, setLoading }) => {
   };
 
   const handleImageAsFile = (e) => {
-    const image = e.target.files[0];
+    const file = e.target.files[0];
     if (checkMimeType(e) && checkFileSize(e)) {
       setLoading(true);
-      setImageAsFile((imageFile) => image);
+      setImageAsFile((imageFile) => file);
     }
   };
 
@@ -108,6 +114,16 @@ const UploadImage = ({ setImage, setLoading }) => {
         />
       </div>
       <ErrorMessage error={error} message={message} />
+      <div className="progress mb-4" style={{height: "1px"}}>
+        <div 
+          className="progress-bar" 
+          role="progressbar" 
+          style={{width: `${progress}%`}} 
+          aria-valuenow={progress} 
+          aria-valuemin="0" 
+          aria-valuemax="100"
+        ></div>
+      </div>
     </>
   );
 };
