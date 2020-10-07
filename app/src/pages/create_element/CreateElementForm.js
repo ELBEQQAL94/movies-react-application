@@ -1,15 +1,15 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-import { useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 // random id
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 // react hooks form for validation
 import { useForm } from "react-hook-form";
 
 // firestore from firebase
-import { db } from '../../services/firebase';
+import { db } from "../../services/firebase";
 
 // utils
 import { setYears } from "../../utils";
@@ -39,19 +39,15 @@ const CreateElementForm = () => {
   };
 
   const onSubmit = (data) => {
-      data.image = image;
-      const {type} = data;
-      const path = type === "movie" ? "/movies" : "/tv-shows";
-      // add data to firestore...
-      db
-        .collection('elements')
-        .doc(uuidv4())
-        .set(data);
-    
-        // redirect user based on element type
-        //history.push(path);
-  };
+    data.image = image;
+    const { type } = data;
+    const path = type === "movie" ? "/movies" : "/tv-shows";
+    // add data to firestore...
+    db.collection("elements").doc(uuidv4()).set(data);
 
+    // redirect user based on element type
+    //history.push(path);
+  };
 
   const { name, year, type } = inputs;
   return (
