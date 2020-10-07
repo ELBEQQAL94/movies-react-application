@@ -21,11 +21,11 @@ const UploadImage = ({ setImage, setLoading }) => {
   }, [imageAsFile]);
 
   const uploadImg = () => {
-    const uploadTask = storage
+    const upload = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
     //initiates the firebase side uploading
-    uploadTask.on(
+    upload.on(
       "state_changed",
       (snapShot) => {
         //takes a snap shot of the process as it is happening
@@ -87,7 +87,6 @@ const UploadImage = ({ setImage, setLoading }) => {
 
   const handleImageAsFile = (e) => {
     const image = e.target.files[0];
-    //console.log("image in upload image component: ", image)
     if (checkMimeType(e) && checkFileSize(e)) {
       setLoading(true);
       setImageAsFile((imageFile) => image);

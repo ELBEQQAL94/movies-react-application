@@ -97,6 +97,7 @@ const CreateElementForm = () => {
             message="Year is required" 
         />
       </div>
+      
       {/* Type */}
       <div className="form-group form-check">
         <input
