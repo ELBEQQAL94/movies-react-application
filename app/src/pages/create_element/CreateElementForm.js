@@ -17,6 +17,7 @@ import { setYears } from "../../utils";
 // Component
 import UploadImage from "../../components/upload_image/UploadImage";
 import Image from "../../components/image/Image";
+import ErrorMessage from "../../components/error_message/ErrorMessage";
 
 const CreateElementForm = () => {
   const history = useHistory();
@@ -65,19 +66,17 @@ const CreateElementForm = () => {
           ref={register({ required: true })}
           onChange={handleChange}
         />
-        {errors.name && (
-          <small id="nameHelp" className="form-text text-muted">
-            {" "}
-            Name is required
-          </small>
-        )}
+        <ErrorMessage 
+            error={errors.name ? true : false} 
+            message="Name is required" 
+        />
       </div>
 
       <Image image={image} loading={loading} />
 
       <UploadImage setImage={setImage} setLoading={setLoading} />
 
-      {/* Year (select options) */}
+      {/* Year */}
       <div className="form-group">
         <select
           value={year}
@@ -93,13 +92,12 @@ const CreateElementForm = () => {
             </option>
           ))}
         </select>
-        {errors.year && (
-          <small id="nameHelp" className="form-text text-muted">
-            Year is required
-          </small>
-        )}
+        <ErrorMessage 
+            error={errors.year ? true : false} 
+            message="Year is required" 
+        />
       </div>
-      {/* Type (radio button) */}
+      {/* Type */}
       <div className="form-group form-check">
         <input
           id="movie"
