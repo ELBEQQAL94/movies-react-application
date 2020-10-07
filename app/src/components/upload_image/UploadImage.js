@@ -59,7 +59,7 @@ const UploadImage = ({ setImage, setLoading }) => {
     if (types.every((type) => typeFile !== type)) {
       // create error message and assign to container
       setError(true);
-      setMessage("is not a supported format");
+      setMessage("Is not a supported format");
       // discard selected file
       e.target.value = null;
       return false;
@@ -75,7 +75,7 @@ const UploadImage = ({ setImage, setLoading }) => {
     if (fileSize > size) {
       // create error message and assign to container
       setError(true);
-      setMessage("is too large, please pick a smaller file");
+      setMessage("Is too large, please pick a smaller file");
       // discard selected file
       e.target.value = null;
       return false;
