@@ -43,7 +43,7 @@ const CreateElementForm = () => {
     data.image = image;
     const { type } = data;
     const path = type === "movie" ? "/movies" : "/tv-shows";
-    // add data to firestore...
+    // add data to firestore on firebase
     db.collection("elements").doc(uuidv4()).set(data);
 
     // redirect user based on element type
@@ -97,7 +97,7 @@ const CreateElementForm = () => {
             message="Year is required" 
         />
       </div>
-      
+
       {/* Type */}
       <div className="form-group form-check">
         <input
