@@ -96,14 +96,14 @@
 * [x] Add new elements to database (firestore)
 * [x] Add uuid
 * [x] Add loading when create element is upload to server
-* [ ] Handle image size (best practices)
+* [x] Handle image size (best practices)
 * [x] Style button
 * [ ] Add new elements on top of the page in firestore based on type (movies or tvShows)
-* [ ] Make error red color
+* [x] Make error red color
 * [x] Refactor create element page
 * [ ] Check warnnings
 * [x] Add Error component
-* [ ] Display error in case set data to database failed
+* [x] Display error in case set data to database failed
 * [x] Upload files
     * ref: https://programmingwithmosh.com/javascript/react-file-upload-proper-server-side-nodejs-easy/
 
