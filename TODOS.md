@@ -76,8 +76,8 @@
 ----
 * [x] Install firebase
 * [x] Setup firebase
-* [ ] Upload files best practices
-* [ ] Create firestore
+* [x] Upload files best practices
+* [x] Create firestore
 * [x] Add CreateElementPage Component
     * [x] image
     * [x] type
