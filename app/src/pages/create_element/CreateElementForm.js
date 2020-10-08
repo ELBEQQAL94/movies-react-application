@@ -6,6 +6,9 @@ import { v4 as uuidv4 } from "uuid";
 // react hooks form for validation
 import { useForm } from "react-hook-form";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // firestore from firebase
 import { db } from "../../services/firebase";
 
@@ -40,6 +43,7 @@ const CreateElementForm = () => {
     data.image = image;
     const { type } = data;
     db.collection("elements").doc(uuidv4()).set(data);
+    toast.success("Element created!");
   };
 
   const { name, year, type } = inputs;
@@ -119,6 +123,7 @@ const CreateElementForm = () => {
           Tv Shows
         </label>
       </div>
+      <ToastContainer />
       <button
         disabled={loading}
         className="btn btn-primary btn-block"
