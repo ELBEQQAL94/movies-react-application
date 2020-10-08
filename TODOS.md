@@ -109,6 +109,10 @@
     * https://codehandbook.org/file-upload-security-best-practices/
 * [x] Add progress bar to track the uploading of the file
 
+----
+* [ ] handle not found params
+* [ ] handle file if is empty
+
 ## API's
 ----
 

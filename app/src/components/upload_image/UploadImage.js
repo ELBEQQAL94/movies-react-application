@@ -41,8 +41,8 @@ const UploadImage = ({ setImage, setLoading }) => {
   }, [imageAsFile, setProgress, setImage, setLoading]);
 
   useEffect(() => {
-    if (imageAsFile !== "" && imageAsFile["name"]) {
-      uploadImg();
+    if (imageAsFile !== "") {
+      if(imageAsFile["name"] !== undefined) uploadImg();
     }
   }, [uploadImg, imageAsFile]);
 
@@ -81,6 +81,7 @@ const UploadImage = ({ setImage, setLoading }) => {
 
   const handleImageAsFile = (e) => {
     const file = e.target.files[0];
+    // check if there is a file or not
     if (checkMimeType(e) && checkFileSize(e)) {
       setLoading(true);
       setImageAsFile((imageFile) => file);

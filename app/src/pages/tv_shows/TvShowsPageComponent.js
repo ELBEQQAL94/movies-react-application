@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { useLocation } from "react-router-dom";
 
@@ -8,8 +8,8 @@ import { Helmet } from "react-helmet";
 // FETCH TVSHOWS FROM SERVER
 import tvShowsService from "../../services/tvShows";
 
-// FETCH NEW ELEMENTS FROM FIRESTORE 
-import { fetchNewElements } from "../../services/firebase";
+// hook custom
+import useContent from "../../hooks_custom/useContent";
 
 // Components
 import Content from "../../components/content/Content";
@@ -24,53 +24,18 @@ const TvShowsPageComponent = () => {
   let location = useLocation();
   let searchParams = new URLSearchParams(location.search);
 
-  const [tvShows, setTvShows] = useState([]);
-  const [newTvShows, setNewTvShows] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(
     +searchParams.get("page") || 1
   );
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [tvShows, totalPages, error] = useContent(
+    tvShowsService,
+    setLoading,
+    searchParams
+  );
   const [resultNotFound, setResultNotFound] = useState(false);
 
   const TITLE = "Tv Shows";
-
-  useEffect(() => {
-    let isMounted = true;
-    const params = searchParams.toString();
-    tvShowsService(params)
-      .then(({ results, total_pages }) => {
-        if (isMounted) {
-          setTotalPages(total_pages);
-          setTvShows(results);
-          setLoading(false);
-        }
-      })
-      .catch((err) => {
-        setLoading(false);
-        setError(true);
-      });
-    
-  fetchNewElements("tv-shows")
-    .then((snapshot) => {
-      let data = [];
-      snapshot.forEach((doc) => {
-        data.push({
-          uid: doc.id,
-          ...doc.data(),
-        });
-      });
-        setNewTvShows(data);
-      })
-    .catch((err) => console.log("err", err));
-
-    return () => {
-      isMounted = false;
-    };
-  }, [location, setError, setLoading, setTvShows, setTotalPages]);
-
-  console.log('new tv shows: ', newTvShows);
 
   return (
     <main className="main">
@@ -92,10 +57,10 @@ const TvShowsPageComponent = () => {
           totalPages={totalPages}
           setLoading={setLoading}
         />
-        <Warning error={error} resultNotFound={resultNotFound}/>
-        <Spinner loading={loading}/>
-        <Spinner loading={loading}/>
-        <Content content={tvShows} setResultNotFound={setResultNotFound}/>
+        <Warning error={error} resultNotFound={resultNotFound} />
+        <Spinner loading={loading} />
+        <Spinner loading={loading} />
+        <Content content={tvShows} setResultNotFound={setResultNotFound} />
         <Pagination
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}

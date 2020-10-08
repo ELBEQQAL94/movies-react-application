@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { useLocation } from "react-router-dom";
 
@@ -8,8 +8,8 @@ import { Helmet } from "react-helmet";
 // SORT MOVIES FROM SERVER
 import moviesService from "../../services/movies";
 
-// FETCH NEW ELEMENTS FROM FIRESTORE 
-import { fetchNewElements } from "../../services/firebase";
+// hook custom
+import useContent from "../../hooks_custom/useContent";
 
 // Components
 import Content from "../../components/content/Content";
@@ -24,53 +24,18 @@ const MoviesPageComponent = () => {
   let location = useLocation();
   let searchParams = new URLSearchParams(location.search);
 
-  const [movies, setMovies] = useState([]);
-  const [newMovies, setNewMovies] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(
     +searchParams.get("page") || 1
   );
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [movies, totalPages, error] = useContent(
+    moviesService,
+    setLoading,
+    searchParams
+  );
   const [resultNotFound, setResultNotFound] = useState(false);
 
   const TITLE = "Movies";
-
-  useEffect(() => {
-    let isMounted = true;
-    const params = searchParams.toString();
-    moviesService(params)
-      .then(({ results, total_pages }) => {
-        if (isMounted) {
-          setTotalPages(total_pages);
-          setMovies(results);
-          setLoading(false);
-        }
-      })
-      .catch((err) => {
-        setLoading(false);
-        setError(true);
-      });
-
-    fetchNewElements("movie")
-          .then((snapshot) => {
-            let data = [];
-            snapshot.forEach((doc) => {
-              data.push({
-                uid: doc.id,
-                ...doc.data(),
-              });
-            });
-            setNewMovies(data);
-          })
-          .catch((err) => console.log("err", err));
-
-    return () => {
-      isMounted = false;
-    };
-  }, [location, setError, setLoading, setMovies, setTotalPages]);
-
-  console.log('new movies: ', newMovies);
 
   return (
     <main className="main">
@@ -86,20 +51,20 @@ const MoviesPageComponent = () => {
             </form>
           </div>
         </Collapse>
-        <Pagination 
-          totalPages={totalPages} 
-          currentPage={currentPage} 
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           setLoading={setLoading}
         />
         <Warning error={error} resultNotFound={resultNotFound} />
-        <Spinner loading={loading}/>
-        <Content content={movies} setResultNotFound={setResultNotFound}/>
-        <Pagination 
-          totalPages={totalPages} 
-          currentPage={currentPage} 
+        <Spinner loading={loading} />
+        <Content content={movies} setResultNotFound={setResultNotFound} />
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
           setCurrentPage={setCurrentPage}
-          setLoading={setLoading} 
+          setLoading={setLoading}
         />
       </div>
     </main>
