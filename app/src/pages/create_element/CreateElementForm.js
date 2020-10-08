@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import { useHistory } from "react-router-dom";
-
 // random id
 import { v4 as uuidv4 } from "uuid";
 
@@ -20,7 +18,6 @@ import Image from "../../components/image/Image";
 import ErrorMessage from "../../components/error_message/ErrorMessage";
 
 const CreateElementForm = () => {
-  const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -42,12 +39,7 @@ const CreateElementForm = () => {
   const onSubmit = (data) => {
     data.image = image;
     const { type } = data;
-    const path = type === "movie" ? "/movies" : "/tv-shows";
-    // add data to firestore on firebase
     db.collection("elements").doc(uuidv4()).set(data);
-
-    // redirect user based on element type
-    //history.push(path);
   };
 
   const { name, year, type } = inputs;
@@ -76,7 +68,6 @@ const CreateElementForm = () => {
 
       <UploadImage setImage={setImage} setLoading={setLoading} />
 
-      {/* Year */}
       <div className="form-group">
         <select
           value={year}
@@ -98,7 +89,6 @@ const CreateElementForm = () => {
         />
       </div>
 
-      {/* Type */}
       <div className="form-group form-check">
         <input
           id="movie"

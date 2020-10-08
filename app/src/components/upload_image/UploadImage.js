@@ -25,21 +25,15 @@ const UploadImage = ({ setImage, setLoading }) => {
     const upload = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
-    //initiates the firebase side uploading
     upload.on(
       "state_changed",
       (snapshot) => {
-        //takes a snap shot of the process as it is happening
-        //console.log(snapshot);
         setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
       },
       (err) => {
-        //catches the errors
         console.log(err);
       },
       () => {
-        // gets the functions from storage refences the image storage in firebase by the children
-        // gets the download url then sets the image from firebase as the value for the imgUrl key:
         storage
           .ref("images")
           .child(imageAsFile.name)
@@ -53,17 +47,12 @@ const UploadImage = ({ setImage, setLoading }) => {
   };
 
   const checkMimeType = (e) => {
-    // list allow mime type
     const types = ["image/png", "image/jpeg", "image/gif"];
-    // compare file type find doesn't matach
     if(e.target.files[0]) {
-      //getting file object
       let typeFile = e.target.files[0].type;
       if (types.every((type) => typeFile !== type)) {
-        // create error message and assign to container
         setError(true);
         setMessage("Is not a supported format");
-        // discard selected file
         e.target.value = null;
         return false;
       }
@@ -78,10 +67,8 @@ const UploadImage = ({ setImage, setLoading }) => {
     if(e.target.files[0]) {
       let fileSize = e.target.files[0].size;
       if (fileSize > size) {
-        // create error message and assign to container
         setError(true);
         setMessage("Is too large, please pick a smaller file");
-        // discard selected file
         e.target.value = null;
         return false;
       }
@@ -101,7 +88,6 @@ const UploadImage = ({ setImage, setLoading }) => {
 
   return (
     <>
-      {/* Image */}
       <div className="form-group">
         <label htmlFor="image">Upload Image</label>
         <input
