@@ -6,8 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 // react hooks form for validation
 import { useForm } from "react-hook-form";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // firestore from firebase
 import { db } from "../../services/firebase";
@@ -42,13 +42,13 @@ const CreateElementForm = () => {
           type="text"
           className="form-control"
           id="name"
-          aria-describedby="nameHelp"
+          aria-describedby="name"
           name="name"
           ref={register({ required: true })}
         />
-        <ErrorMessage 
-            error={errors.name ? true : false} 
-            message="Name is required" 
+        <ErrorMessage
+          error={errors.name ? true : false}
+          message="Name is required"
         />
       </div>
 
@@ -69,9 +69,9 @@ const CreateElementForm = () => {
             </option>
           ))}
         </select>
-        <ErrorMessage 
-            error={errors.year ? true : false} 
-            message="Year is required" 
+        <ErrorMessage
+          error={errors.year ? true : false}
+          message="Year is required"
         />
       </div>
 
@@ -82,12 +82,16 @@ const CreateElementForm = () => {
           value="movie"
           className="form-check-input"
           name="type"
-          ref={register()}
+          ref={register({ required: true })}
         />
         <label className="form-check-label" htmlFor="movie">
           Movie
         </label>
       </div>
+      <ErrorMessage
+        error={errors.type ? true : false}
+        message="Type is required"
+      />
       <div className="form-group form-check">
         <input
           id="tv-shows"
@@ -95,12 +99,16 @@ const CreateElementForm = () => {
           value="tv-shows"
           className="form-check-input"
           name="type"
-          ref={register()}
+          ref={register({ required: true })}
         />
         <label className="form-check-label" htmlFor="tv-shows">
           Tv Shows
         </label>
       </div>
+      <ErrorMessage
+        error={errors.type ? true : false}
+        message="Type is required"
+      />
       <ToastContainer />
       <button
         disabled={loading}
