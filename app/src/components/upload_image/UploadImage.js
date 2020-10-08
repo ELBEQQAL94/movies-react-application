@@ -51,14 +51,13 @@ const UploadImage = ({ setImage, setLoading }) => {
 
   const checkMimeType = (e) => {
     const types = ["image/png", "image/jpeg", "image/gif"];
-    if(e.target.files[0]) {
-      let typeFile = e.target.files[0].type;
-      if (types.every((type) => typeFile !== type)) {
-        setError(true);
-        setMessage("Is not a supported format");
-        e.target.value = null;
-        return false;
-      }
+    let typeFile = e.target.files[0].type;
+    if (types.every((type) => typeFile !== type)) {
+      setError(true);
+      setMessage("Is not a supported format");
+      e.target.value = null;
+      setImage("");
+      return false;
     }
     setError(false);
     setMessage("");
@@ -67,14 +66,13 @@ const UploadImage = ({ setImage, setLoading }) => {
 
   const checkFileSize = (e) => {
     let size = 40000;
-    if(e.target.files[0]) {
-      let fileSize = e.target.files[0].size;
-      if (fileSize > size) {
-        setError(true);
-        setMessage("Is too large, please pick a smaller file");
-        e.target.value = null;
-        return false;
-      }
+    let fileSize = e.target.files[0].size;
+    if (fileSize > size) {
+      setError(true);
+      setMessage("Is too large, please pick a smaller file");
+      e.target.value = null;
+      setImage("");
+      return false;
     }
     setError(false);
     setMessage("");
