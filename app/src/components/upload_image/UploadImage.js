@@ -81,16 +81,13 @@ const UploadImage = ({ setImage, setLoading }) => {
 
   const handleImageAsFile = (e) => {
     const file = e.target.files[0];
-    // check if there is a file or not
     if(file !== undefined) {
       if (checkMimeType(e) && checkFileSize(e)) {
         setLoading(true);
         setImageAsFile((imageFile) => file);
       }
     } else {
-      // clear image
       setImage("");
-      // clear progress bar
       setProgress(0);
       setShow(false);
     }
