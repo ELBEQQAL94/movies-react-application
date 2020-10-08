@@ -41,7 +41,6 @@ const CreateElementForm = () => {
 
   const onSubmit = (data) => {
     data.image = image;
-    const { type } = data;
     db.collection("elements").doc(uuidv4()).set(data);
     toast.success("Element created!");
   };
