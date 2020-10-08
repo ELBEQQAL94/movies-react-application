@@ -36,7 +36,6 @@ const CreateElementForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {/* Name */}
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input

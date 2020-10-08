@@ -98,10 +98,9 @@
 * [x] Add loading when create element is upload to server
 * [x] Handle image size (best practices)
 * [x] Style button
-* [ ] Add new elements on top of the page in firestore based on type (movies or tvShows)
 * [x] Make error red color
 * [x] Refactor create element page
-* [ ] Check warnnings
+* [x] Check warnnings
 * [x] Add Error component
 * [x] Display error in case set data to database failed
 * [x] Upload files
