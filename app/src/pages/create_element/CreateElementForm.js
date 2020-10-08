@@ -15,7 +15,7 @@ import { db } from "../../services/firebase";
 // utils
 import { setYears } from "../../utils";
 
-// Component
+// Components
 import UploadImage from "../../components/upload_image/UploadImage";
 import Image from "../../components/image/Image";
 import ErrorMessage from "../../components/error_message/ErrorMessage";
