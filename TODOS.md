@@ -112,7 +112,7 @@
 ----
 * [ ] handle not found params
 * [ ] handle file if is empty
-
+* [ ] Check warnings
 ## API's
 ----
 

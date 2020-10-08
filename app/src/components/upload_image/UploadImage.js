@@ -41,9 +41,7 @@ const UploadImage = ({ setImage, setLoading }) => {
   }, [imageAsFile, setProgress, setImage, setLoading]);
 
   useEffect(() => {
-    if (imageAsFile !== "") {
-      if(imageAsFile["name"] !== undefined) uploadImg();
-    }
+    if(imageAsFile["name"]) uploadImg();
   }, [uploadImg, imageAsFile]);
 
 
@@ -82,9 +80,16 @@ const UploadImage = ({ setImage, setLoading }) => {
   const handleImageAsFile = (e) => {
     const file = e.target.files[0];
     // check if there is a file or not
-    if (checkMimeType(e) && checkFileSize(e)) {
-      setLoading(true);
-      setImageAsFile((imageFile) => file);
+    if(file !== undefined) {
+      if (checkMimeType(e) && checkFileSize(e)) {
+        setLoading(true);
+        setImageAsFile((imageFile) => file);
+      }
+    } else {
+      // clear image
+      setImage("");
+      // clear progress bar
+      setProgress(0);
     }
   };
 
