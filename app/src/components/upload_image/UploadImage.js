@@ -6,14 +6,16 @@ import PropTypes from "prop-types";
 // firebase storage
 import { storage } from "../../services/firebase";
 
-// Component
+// Components
 import ErrorMessage from "../../components/error_message/ErrorMessage";
+import ProgressBar from "../progress_bar/ProgressBar";
 
 const UploadImage = ({ setImage, setLoading }) => {
   const [imageAsFile, setImageAsFile] = useState("");
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const [show, setShow] = useState(false);
 
   const uploadImg = useCallback(() => {
     const upload = storage
@@ -22,6 +24,7 @@ const UploadImage = ({ setImage, setLoading }) => {
     upload.on(
       "state_changed",
       (snapshot) => {
+        setShow(true);
         setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
       },
       (err) => {
@@ -35,6 +38,7 @@ const UploadImage = ({ setImage, setLoading }) => {
           .then((fireBaseUrl) => {
             setImage(fireBaseUrl);
             setLoading(false);
+            setShow(false);
           });
       }
     );
@@ -90,6 +94,7 @@ const UploadImage = ({ setImage, setLoading }) => {
       setImage("");
       // clear progress bar
       setProgress(0);
+      setShow(false);
     }
   };
 
@@ -107,16 +112,7 @@ const UploadImage = ({ setImage, setLoading }) => {
         />
       </div>
       <ErrorMessage error={error} message={message} />
-      <div className="progress mb-4" style={{height: "1px"}}>
-        <div 
-          className="progress-bar" 
-          role="progressbar" 
-          style={{width: `${progress}%`}} 
-          aria-valuenow={progress} 
-          aria-valuemin="0" 
-          aria-valuemax="100"
-        ></div>
-      </div>
+      <ProgressBar show={show} progress={progress}/>
     </>
   );
 };
