@@ -24,20 +24,9 @@ const CreateElementForm = () => {
   const { register, handleSubmit, errors } = useForm();
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [inputs, setInput] = useState({
-    name: "",
-    year: "",
-    type: "movie",
-    image: "",
-  });
 
   // generate years from 1994
   const years = setYears();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInput({ ...inputs, [name]: value });
-  };
 
   const onSubmit = (data) => {
     data.image = image;
@@ -45,7 +34,6 @@ const CreateElementForm = () => {
     toast.success("Element created!");
   };
 
-  const { name, year, type } = inputs;
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* Name */}
@@ -57,9 +45,7 @@ const CreateElementForm = () => {
           id="name"
           aria-describedby="nameHelp"
           name="name"
-          value={name}
           ref={register({ required: true })}
-          onChange={handleChange}
         />
         <ErrorMessage 
             error={errors.name ? true : false} 
@@ -73,8 +59,6 @@ const CreateElementForm = () => {
 
       <div className="form-group">
         <select
-          value={year}
-          onChange={handleChange}
           name="year"
           className="form-control"
           ref={register({ required: true })}
@@ -99,8 +83,6 @@ const CreateElementForm = () => {
           value="movie"
           className="form-check-input"
           name="type"
-          checked={type === "movie"}
-          onChange={handleChange}
           ref={register()}
         />
         <label className="form-check-label" htmlFor="movie">
@@ -114,8 +96,6 @@ const CreateElementForm = () => {
           value="tv-shows"
           className="form-check-input"
           name="type"
-          checked={type === "tv-shows"}
-          onChange={handleChange}
           ref={register()}
         />
         <label className="form-check-label" htmlFor="tv-shows">
