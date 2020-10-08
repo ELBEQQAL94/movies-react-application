@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { useHistory, useLocation } from "react-router-dom";
 
@@ -27,15 +27,6 @@ const Filter = ({ setCurrentPage, setLoading }) => {
 
   // generate years from 1994
   const years = setYears();
-
-  // useEffect(() =>{
-  //   for(let filter in filters ) {
-  //     const name = filter;
-  //     const value = filters[filter];
-  //     console.log(`${name}: `, value);
-  //     setQueryToUrl(name, value, location, history);
-  //   };
-  // }, [filters])
 
   // handle filter
   const onFilterChange = (e) => {

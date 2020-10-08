@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 // Prop Types
 import PropTypes from "prop-types";
@@ -15,13 +15,7 @@ const UploadImage = ({ setImage, setLoading }) => {
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    if (imageAsFile !== "" && imageAsFile["name"]) {
-      uploadImg();
-    }
-  }, [imageAsFile]);
-
-  const uploadImg = () => {
+  const uploadImg = useCallback(() => {
     const upload = storage
       .ref(`/images/${imageAsFile.name}`)
       .put(imageAsFile);
@@ -44,7 +38,14 @@ const UploadImage = ({ setImage, setLoading }) => {
           });
       }
     );
-  };
+  }, [imageAsFile, setProgress, setImage, setLoading]);
+
+  useEffect(() => {
+    if (imageAsFile !== "" && imageAsFile["name"]) {
+      uploadImg();
+    }
+  }, [uploadImg, imageAsFile]);
+
 
   const checkMimeType = (e) => {
     const types = ["image/png", "image/jpeg", "image/gif"];
