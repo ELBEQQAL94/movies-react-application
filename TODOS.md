@@ -110,9 +110,17 @@
 * [x] Add progress bar to track the uploading of the file
 
 ----
-* [ ] handle not found params
-* [ ] handle file if is empty
-* [ ] Check warnings
+* [x] handle file if is empty
+
+----
+* [ ] Improve logic of upload function
+* [x] Make preview before image upload to database
+* [x] Container Component VS Representaional Component
+* [x] UseCallback
+    * https://stackoverflow.com/questions/58866796/understanding-the-react-hooks-exhaustive-deps-lint-rule
+* [ ] Check deminsions of the image
+* [ ] Remove progress
+* [x] accepte only images
 ## API's
 ----
 

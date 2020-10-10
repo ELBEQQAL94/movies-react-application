@@ -23,16 +23,19 @@ import ErrorMessage from "../../components/error_message/ErrorMessage";
 const CreateElementForm = () => {
   const { register, handleSubmit, errors } = useForm();
   const [image, setImage] = useState("");
+  const [imageAsUrl, setImageAsUrl] = useState("");
   const [loading, setLoading] = useState(false);
 
   // generate years from 1994
   const years = setYears();
 
   const onSubmit = (data) => {
-    data.image = image;
+    data.image = imageAsUrl;
     db.collection("elements").doc(uuidv4()).set(data);
     toast.success("Element created!");
   };
+
+  console.log(imageAsUrl)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -54,7 +57,11 @@ const CreateElementForm = () => {
 
       <Image image={image} loading={loading} />
 
-      <UploadImage setImage={setImage} setLoading={setLoading} />
+      <UploadImage 
+        setImage={setImage} 
+        setLoading={setLoading} 
+        setImageAsUrl={setImageAsUrl}
+      />
 
       <div className="form-group">
         <select
