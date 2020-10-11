@@ -113,14 +113,15 @@
 * [x] handle file if is empty
 
 ----
-* [ ] Improve logic of upload function
+* [x] Improve logic of upload function
 * [x] Make preview before image upload to database
 * [x] Container Component VS Representaional Component
 * [x] UseCallback
     * https://stackoverflow.com/questions/58866796/understanding-the-react-hooks-exhaustive-deps-lint-rule
-* [ ] Check deminsions of the image
-* [ ] Remove progress
-* [x] accepte only images
+* [x] Resize image
+    * ref: https://www.npmjs.com/package/browser-image-compression
+* [x] accepte images only
+
 ## API's
 ----
 

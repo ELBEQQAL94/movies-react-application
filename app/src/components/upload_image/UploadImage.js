@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import imageCompression from 'browser-image-compression';
 
 // Prop Types
 import PropTypes from "prop-types";
@@ -18,9 +19,7 @@ const UploadImage = ({ setImage, setLoading, setImageAsUrl }) => {
   const [show, setShow] = useState(false);
 
   const uploadImg = useCallback(() => {
-    const upload = storage
-      .ref(`/images/${imageAsFile.name}`)
-      .put(imageAsFile);
+    const upload = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile);
     upload.on(
       "state_changed",
       (snapshot) => {
@@ -45,35 +44,8 @@ const UploadImage = ({ setImage, setLoading, setImageAsUrl }) => {
   }, [imageAsFile, setProgress, setImageAsUrl, setLoading]);
 
   useEffect(() => {
-    if(imageAsFile["name"]) uploadImg();
+    if (imageAsFile["name"]) uploadImg();
   }, [uploadImg, imageAsFile]);
-
-
-  const checkImageDimensions = (e) => {
-    const URL = window.URL || window.webkitURL
-    const file = e.target;
-    if (file.files[0] != undefined) {
-      const MAX_WIDTH = 3000;
-      const MAX_HEIGHT = 3000;
-      const image = new Image();
-      image.src = URL.createObjectURL(file.files[0]);
-      setImage(image.src);
-      image.onload = function(e) {
-        if(this.width > MAX_WIDTH && this.height > MAX_HEIGHT) {
-          setError(true);
-          setMessage(`Image width must be ${MAX_WIDTH} and height must be ${MAX_HEIGHT}`);
-          setImageAsUrl("");
-          setImageAsUrl("");
-          return false;
-        }
-        return true;
-      };
-    } else {
-      setError(false);
-      setMessage("");
-      return true;
-    }
-  }
 
   const checkFileSize = (e) => {
     let size = 40000;
@@ -91,13 +63,25 @@ const UploadImage = ({ setImage, setLoading, setImageAsUrl }) => {
     return true;
   };
 
-  const handleImageAsFile = (e) => {
+  const handleImageAsFile = async (e) => {
     const file = e.target.files[0];
-    console.log(checkImageDimensions(e))
-    if(file !== undefined) {
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 300,
+      useWebWorker: true
+    }
+    if (file !== undefined) {
       if (checkFileSize(e)) {
+        const image = new Image();
+        image.src = URL.createObjectURL(file);
+        setImage(image.src);
         setLoading(true);
-        setImageAsFile((imageFile) => file);
+        try {
+          const compressedFile = await imageCompression(file, options);
+          setImageAsFile((imageFile) => compressedFile);
+        } catch (error) {
+          console.log(error);
+        }
       }
     } else {
       setImage("");
@@ -121,7 +105,7 @@ const UploadImage = ({ setImage, setLoading, setImageAsUrl }) => {
         />
       </div>
       <ErrorMessage error={error} message={message} />
-      <ProgressBar show={show} progress={progress}/>
+      <ProgressBar show={show} progress={progress} />
     </>
   );
 };

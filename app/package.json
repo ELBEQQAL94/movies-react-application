@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
+    "browser-image-compression": "^1.0.12",
     "file-upload-with-preview": "^4.1.0",
     "firebase": "^7.22.1",
     "prop-types": "^15.7.2",
