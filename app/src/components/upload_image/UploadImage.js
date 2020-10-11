@@ -75,21 +75,6 @@ const UploadImage = ({ setImage, setLoading, setImageAsUrl }) => {
     }
   }
 
-  // const checkMimeType = (e) => {
-  //   const types = ["image/png", "image/jpeg", "image/gif"];
-  //   let typeFile = e.target.files[0].type;
-  //   if (types.every((type) => typeFile !== type)) {
-  //     setError(true);
-  //     setMessage("Is not a supported format");
-  //     e.target.value = null;
-  //     setImage("");
-  //     return false;
-  //   }
-  //   setError(false);
-  //   setMessage("");
-  //   return true;
-  // };
-
   const checkFileSize = (e) => {
     let size = 40000;
     let fileSize = e.target.files[0].size;
