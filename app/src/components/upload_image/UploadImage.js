@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
+
+// compression image 
 import imageCompression from 'browser-image-compression';
 
 // Prop Types
